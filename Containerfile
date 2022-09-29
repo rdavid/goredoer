@@ -1,12 +1,12 @@
-FROM golang:1.19-alpine AS goredoer
+FROM golang:1.19.1-alpine AS goredoer
 LABEL maintainer="David Rabkin <david@rabkin.co.il>"
 RUN \
 	apk add --no-cache --update \
-		zstd~=1.5 && \
+		zstd~=1.5.2 && \
 	rm -rf /var/cache/apk/*
 ENV \
-	SHA=63cfdb24f14ec7071b5bb8ed237023410826ea9f21d48e8e6c9f43ae2af34176 \
-	VER=1.27.0
+	SHA=98c1a8a189b33753fcd61e1dbdbe627dba3820621d2032a3856d89829eea08d9 \
+	VER=1.27.1
 
 # DL4006 is a bashism.
 # Set the SHELL option -o pipefail before RUN with a pipe in.
