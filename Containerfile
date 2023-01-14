@@ -1,5 +1,6 @@
 FROM golang:1.20-rc-alpine AS goredoer
 LABEL maintainer=David\ Rabkin\ <david@rabkin.co.il>
+COPY LICENSE /licenses/LICENSE
 RUN \
 	apk add --no-cache --update \
 		curl~=7.87.0 \
