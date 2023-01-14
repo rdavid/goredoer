@@ -12,9 +12,7 @@ ENV \
 ENV \
 	NME=goredo-$VER.tar.zst \
 	URL=http://www.goredo.cypherpunks.ru/download/goredo-$VER.tar.zst
-
-# Set the SHELL option -o pipefail before RUN with a pipe in.
-# hadolint ignore=DL4006
+SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN \
 	curl --location --remote-name --silent $URL \
 		&& printf %s\ \ %s $SHA $NME | sha256sum -cs \
