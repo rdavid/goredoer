@@ -1,4 +1,4 @@
-FROM golang:1.20-rc-alpine AS goredoer
+FROM golang:1.20-rc-alpine
 LABEL maintainer=David\ Rabkin\ <david@rabkin.co.il>
 COPY LICENSE /licenses/LICENSE
 RUN \
