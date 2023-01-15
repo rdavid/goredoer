@@ -3,12 +3,12 @@ name: Publisher
 "on":
   push:
     branches:
-    tags:
+      - master
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -17,8 +17,13 @@ jobs:
         uses: hadolint/hadolint-action@v2.1.0
         with:
           dockerfile: Containerfile
+      - name: Run YamlLint
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: .github/workflows/*.yml
       - name: Setup Docker buildx
-        uses: docker/setup-buildx-action@79abd3f86f79a9d68a23c75a09a9a85889262adf
+        uses:
+          docker/setup-buildx-action@79abd3f86f79a9d68a23c75a09a9a85889262adf
       - name: Log into registry ${{ env.REGISTRY }}
         uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
         with:
