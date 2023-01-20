@@ -1,4 +1,4 @@
-# Goredoer [![Hits-of-Code](https://hitsofcode.com/github/rdavid/goredoer?branch=master)](https://hitsofcode.com/view/github/rdavid/goredoer?branch=master) [![License](https://img.shields.io/badge/license-0BSD-green)](https://github.com/rdavid/goredoer/blob/master/LICENSE)
+# Goredoer [![Publisher](https://github.com/rdavid/goredoer/actions/workflows/publish.yml/badge.svg)](https://github.com/rdavid/goredoer/actions/workflows/publish.yml) [![Hits-of-Code](https://hitsofcode.com/github/rdavid/goredoer?branch=master)](https://hitsofcode.com/view/github/rdavid/goredoer?branch=master) [![License](https://img.shields.io/badge/license-0BSD-green)](https://github.com/rdavid/goredoer/blob/master/LICENSE)
 Container image for building
 [`goredo`](http://www.goredo.cypherpunks.ru/Install.html).
 
