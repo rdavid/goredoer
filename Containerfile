@@ -15,6 +15,7 @@ RUN \
 		&& rm -rf /var/cache/apk/* \
 		&& curl --location --remote-name --silent $URL \
 		&& printf %s\ \ %s $SHA $NME | sha256sum -cs \
-		&& zstd --decompress < $NME | tar --extract --file -
-WORKDIR /go/goredo-$VER/src
-RUN go build -mod=vendor
+		&& zstd --decompress < $NME | \
+			tar --extract --file - --strip-components=2 goredo-$VER/src \
+		&& unset GOPATH \
+		&& go build -mod=vendor
