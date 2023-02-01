@@ -23,6 +23,11 @@ git clone git@github.com:rdavid/goredoer.git &&
 	podman build --file ./Containerfile --format docker .
 ```
 ## Use
+```sh
+FROM ghcr.io/rdavid/goredoer:v0.9.20230201 AS goredoer
+…
+COPY --from=goredoer /go/goredo .
+```
 See an example, how [`shellbase`](https://github.com/rdavid/shellbase) uses the
 `goredoer`'s image in its
 [`Containerfile`](https://github.com/rdavid/shellbase/blob/master/container/alpine/Containerfile).
