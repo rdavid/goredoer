@@ -10,9 +10,10 @@ Container image for building
 ## About
 Hi, I'm [David Rabkin](http://cv.rabkin.co.il).
 
-`goredoer` is a container image, that downloads, validates, extracts and builds
-Sergey Matveev's [`goredo`](http://www.goredo.cypherpunks.ru/Install.html)
-utility. It is an implementation of Daniel J. Bernstein's (aka, djb)
+`goredoer` is a container image, which downloads, validates, extracts, and
+builds Sergey Matveev's
+[`goredo`](http://www.goredo.cypherpunks.ru/Install.html) utility. It is an
+implementation of Daniel J. Bernstein's (aka, djb)
 [build system](http://cr.yp.to/redo.html).
 
 ## Build
