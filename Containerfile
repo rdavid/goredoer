@@ -18,4 +18,6 @@ RUN \
 		&& zstd --decompress < $NME | \
 			tar --extract --file - --strip-components=2 goredo-$VER/src \
 		&& unset GOPATH \
-		&& go build -mod=vendor
+		&& go build -mod=vendor \
+		&& find . ! -path . -type d -exec rm -fr {} + \
+		&& find . ! -name goredo -type f -exec rm -f {} +
