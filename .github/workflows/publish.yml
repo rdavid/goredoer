@@ -1,6 +1,6 @@
 ---
 name: publisher
-"on":
+'on':
   push:
     branches:
       - master
