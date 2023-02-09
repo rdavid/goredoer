@@ -25,7 +25,7 @@ git clone git@github.com:rdavid/goredoer.git &&
 ```
 ## Use
 ```sh
-COPY --from=ghcr.io/rdavid/goredoer:v0.9.20230203 /go/goredo .
+COPY --from=ghcr.io/rdavid/goredoer:v0.9.20230210 /go/goredo .
 RUN goredo -symlinks
 ```
 See an example, how [`shellbase`](https://github.com/rdavid/shellbase) uses the
