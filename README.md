@@ -1,4 +1,4 @@
-# Goredoer [![publisher](https://github.com/rdavid/goredoer/actions/workflows/publish.yml/badge.svg)](https://github.com/rdavid/goredoer/actions/workflows/publish.yml) [![hits of code](https://hitsofcode.com/github/rdavid/goredoer?branch=master&label=hits%20of%20code)](https://hitsofcode.com/view/github/rdavid/goredoer?branch=master) [![license](https://img.shields.io/github/license/rdavid/goredoer?color=blue&labelColor=gray&logo=freebsd&logoColor=lightgray&style=flat)](https://github.com/rdavid/goredoer/blob/master/LICENSE)
+# Goredoer [![publisher](https://github.com/rdavid/goredoer/actions/workflows/publish.yml/badge.svg)](https://github.com/rdavid/goredoer/actions/workflows/publish.yml) [![hits of code](https://hitsofcode.com/github/rdavid/goredoer?branch=master&label=hits%20of%20code)](https://hitsofcode.com/view/github/rdavid/goredoer?branch=master) [![release)](https://img.shields.io/github/v/release/rdavid/goredoer?color=blue&label=%20&logo=semver&logoColor=white&style=flat)](https://github.com/rdavid/goredoer/releases) [![license](https://img.shields.io/github/license/rdavid/goredoer?color=blue&labelColor=gray&logo=freebsd&logoColor=lightgray&style=flat)](https://github.com/rdavid/goredoer/blob/master/LICENSE)
 Container image for building
 [`goredo`](http://www.goredo.cypherpunks.ru/Install.html).
 
@@ -23,6 +23,7 @@ git clone git@github.com:rdavid/goredoer.git &&
 	cd goredoer &&
 	podman build --file ./Containerfile --format docker .
 ```
+
 ## Use
 ```sh
 COPY --from=ghcr.io/rdavid/goredoer:v0.9.20230210 /go/goredo .
