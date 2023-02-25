@@ -13,8 +13,8 @@ Hi, I'm [David Rabkin](http://cv.rabkin.co.il).
 `goredoer` is a container image, which downloads, validates, extracts, and
 builds Sergey Matveev's
 [`goredo`](http://www.goredo.cypherpunks.ru/Install.html) utility. It is an
-implementation of Daniel J. Bernstein's (aka, djb)
-[build system](http://cr.yp.to/redo.html).
+implementation of Daniel J. Bernstein's (aka, djb) build system
+[`redo`](http://cr.yp.to/redo.html).
 
 ## Build
 To build the image locally, start VM if needed `podman machine start`:
