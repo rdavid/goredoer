@@ -17,6 +17,9 @@ jobs:
       - uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: Containerfile
+      - uses: nosborn/github-action-markdown-cli@v3.2.0
+        with:
+          files: ./*.md
       - uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: .github/workflows/*.yml
