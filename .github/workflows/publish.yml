@@ -22,7 +22,7 @@ jobs:
           files: ./*.md
       - uses: ibiqlik/action-yamllint@v3
         with:
-          file_or_dir: .github/workflows/*.yml
+          file_or_dir: .github/*.yml .github/workflows/*.yml
           strict: true
       - uses: docker/setup-buildx-action@v2
       - name: Log into registry ${{ env.REGISTRY }}
