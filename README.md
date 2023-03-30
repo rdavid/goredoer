@@ -1,5 +1,6 @@
 # Goredoer
 
+[![linters](https://github.com/rdavid/goredoer/actions/workflows/lint.yml/badge.svg)](https://github.com/rdavid/goredoer/actions/workflows/lint.yml)
 [![publisher](https://github.com/rdavid/goredoer/actions/workflows/publish.yml/badge.svg)](https://github.com/rdavid/goredoer/actions/workflows/publish.yml)
 [![hits of code](https://hitsofcode.com/github/rdavid/goredoer?branch=master&label=hits%20of%20code)](https://hitsofcode.com/view/github/rdavid/goredoer?branch=master)
 [![release)](https://img.shields.io/github/v/release/rdavid/goredoer?color=blue&label=%20&logo=semver&logoColor=white&style=flat)](https://github.com/rdavid/goredoer/releases)
