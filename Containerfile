@@ -1,4 +1,5 @@
-FROM golang:1.20.2-alpine
+# FROM golang:1.20.2-alpine
+FROM golang:1.20.1-alpine
 LABEL maintainer=David\ Rabkin\ <david@rabkin.co.il>
 COPY LICENSE /licenses/LICENSE
 ENV \
