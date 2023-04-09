@@ -2,10 +2,8 @@
 name: publisher
 'on':
   push:
-    branches:
-      - master
     tags:
-      - v*.*.*
+      - v*
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
@@ -15,8 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: docker/setup-buildx-action@v2
-      - name: Log into registry ${{ env.REGISTRY }}
-        uses: docker/login-action@v2
+      - uses: docker/login-action@v2
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -25,6 +22,16 @@ jobs:
         id: meta
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          labels: |
+            maintainer=David Rabkin
+            org.opencontainers.image.title=Goredoer
+            org.opencontainers.image.description=Goredoer builds Goredo.
+            org.opencontainers.image.vendor=David Rabkin
+          tags: |
+            type=semver,pattern={{major}}.{{minor}},priority=901
+            type=semver,pattern={{version}}
+            type=sha,priority=201
+            type=raw,value={{date 'YYYYMMDD-HHmmss' tz='Asia/Jerusalem'}}
       - uses: docker/build-push-action@v4
         id: build-and-push
         with:
@@ -33,5 +40,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
