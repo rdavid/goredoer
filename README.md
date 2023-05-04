@@ -32,7 +32,7 @@ git clone git@github.com:rdavid/goredoer.git &&
 ## Using
 
 ```sh
-COPY --from=ghcr.io/rdavid/goredoer:0.9.20230410 /go/goredo .
+COPY --from=ghcr.io/rdavid/goredoer:0.9.20230504 /go/goredo .
 RUN goredo -symlinks
 ```
 
