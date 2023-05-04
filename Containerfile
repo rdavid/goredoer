@@ -1,4 +1,4 @@
-FROM golang:1.20.3-alpine
+FROM golang:1.20.4-alpine
 LABEL maintainer=David\ Rabkin\ <david@rabkin.co.il>
 COPY LICENSE /licenses/LICENSE
 ENV \
@@ -10,7 +10,7 @@ ENV \
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN \
 	apk add --no-cache --update \
-		curl~=7.88.1 \
+		curl~=8.0.1 \
 		zstd~=1.5.5 \
 		&& rm -rf /var/cache/apk/* \
 		&& curl --location --remote-name --silent $URL \
