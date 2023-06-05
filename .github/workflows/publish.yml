@@ -2,6 +2,8 @@
 name: publisher
 'on':
   push:
+    schedule:
+      - cron: '0 5 * * *'
     tags:
       - v*
 env:
@@ -28,10 +30,10 @@ jobs:
             org.opencontainers.image.description=Goredoer builds Goredo.
             org.opencontainers.image.vendor=David Rabkin
           tags: |
-            type=semver,pattern={{major}}.{{minor}},priority=901
+            type=raw,value=latest
+            type=schedule,pattern=nightly
             type=semver,pattern={{version}}
-            type=sha,priority=201
-            type=raw,value={{date 'YYYYMMDD-HHmmss' tz='Asia/Jerusalem'}}
+            type=semver,pattern={{major}}.{{minor}},priority=901
       - uses: docker/build-push-action@v4
         id: build-and-push
         with:
