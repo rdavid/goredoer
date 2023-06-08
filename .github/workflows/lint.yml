@@ -10,9 +10,10 @@ jobs:
         with:
           dockerfile: Containerfile
           recursive: true
-      - uses: nosborn/github-action-markdown-cli@v3.3.0
+      - uses: errata-ai/vale-action@reviewdog
         with:
-          files: .
+          fail_on_error: true
+          files: README.adoc
       - uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: .github/*.yml .github/workflows/*.yml
