@@ -24,7 +24,7 @@ toc::[]
 
 `goredoer` is the container image, which downloads, validates, extracts, and
 builds Sergey Matveev's {url-goredo}[`goredo`] utility.
-It is the implementation of Daniel J. Bernstein's (aka, djb) build system
+It is the implementation of Daniel J. Bernstein's build system
 {url-redo}[`redo`].
 
 == Build

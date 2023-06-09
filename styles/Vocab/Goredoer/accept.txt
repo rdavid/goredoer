@@ -1,5 +1,4 @@
-djb
 Goredoer
-Sergey
-Matveev's
+Matveev
 Rabkin
+Sergey
