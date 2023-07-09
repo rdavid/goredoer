@@ -1,4 +1,4 @@
-FROM golang:1.20.5-alpine
+FROM golang:1.20.5-alpine AS builder
 LABEL maintainer=David\ Rabkin\ <david@rabkin.co.il>
 COPY LICENSE /licenses/LICENSE
 ENV \
@@ -21,3 +21,8 @@ RUN \
 		&& go build -mod=vendor \
 		&& find . ! -path . -type d -exec rm -fr {} + \
 		&& find . ! -name goredo -type f -exec rm -f {} +
+
+FROM alpine:3.18.2
+LABEL maintainer=David\ Rabkin\ <david@rabkin.co.il>
+COPY LICENSE /licenses/LICENSE
+COPY --from=builder /go/goredo /
