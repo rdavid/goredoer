@@ -22,10 +22,10 @@ toc::[]
 
 == About
 
-`goredoer` is the container image, which downloads, validates, extracts, and
-builds Sergey Matveev's {url-goredo}[`goredo`] utility.
-It is the implementation of Daniel J. Bernstein's build system
-{url-redo}[`redo`].
+The container image `goredoer` downloads, validates, extracts, and builds
+Sergey Matveev's {url-goredo}[`goredo`] utility.
+{url-goredo}[`goredo`] implements Daniel J. Bernstein's build system
+{url-redo}[`redo`] in Go.
 
 == Build
 
