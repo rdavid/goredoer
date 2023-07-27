@@ -10,8 +10,8 @@ ENV \
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN \
 	apk add --no-cache --update \
-		curl~=8.1.2 \
-		zstd~=1.5.5 \
+		curl~=8.2 \
+		zstd~=1.5 \
 		&& rm -rf /var/cache/apk/* \
 		&& curl --location --remote-name --silent $URL \
 		&& printf %s\ \ %s $SHA $NME | sha256sum -cs \
