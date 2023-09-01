@@ -40,6 +40,8 @@ git clone git@github.com:rdavid/goredoer.git &&
 
 == Using
 
+Include the following lines in your `Containerfile`:
+
 [,sh]
 ----
 COPY --from=ghcr.io/rdavid/goredoer:0.9.20230808 /goredo .
