@@ -2,8 +2,8 @@ FROM golang:1.21.1-alpine AS builder
 LABEL maintainer=David\ Rabkin\ <david@rabkin.co.il>
 COPY LICENSE /licenses/LICENSE
 ENV \
-	SHA=825b20daaf2315de33e82b8ace567769f271fd2ec0c3a2c2c45012fee1cb9548 \
-	VER=1.30.0
+	SHA=cfbbbbd5514ca2ae15c07a21327631fda8414a44591e823c3197adf603be5d5c \
+	VER=1.31.0
 ENV \
 	NME=goredo-$VER.tar.zst \
 	URL=http://www.goredo.cypherpunks.ru/download/goredo-$VER.tar.zst
