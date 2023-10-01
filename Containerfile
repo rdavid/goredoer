@@ -22,7 +22,7 @@ RUN \
 		&& find . ! -path . -type d -exec rm -fr {} + \
 		&& find . ! -name goredo -type f -exec rm -f {} +
 
-FROM alpine:3.18.3
+FROM alpine:3.18.4
 LABEL maintainer=David\ Rabkin\ <david@rabkin.co.il>
 COPY LICENSE /licenses/LICENSE
 COPY --from=builder /go/goredo /
