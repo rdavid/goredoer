@@ -1,4 +1,4 @@
-FROM golang:1.21.2-alpine AS builder
+FROM golang:1.21.3-alpine AS builder
 LABEL maintainer=David\ Rabkin\ <david@rabkin.co.il>
 COPY LICENSE /licenses/LICENSE
 ENV \
@@ -10,7 +10,7 @@ ENV \
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN \
 	apk add --no-cache --update \
-		curl~=8.3 \
+		curl~=8.4 \
 		zstd~=1.5 \
 		&& rm -rf /var/cache/apk/* \
 		&& curl --location --remote-name --silent $URL \
