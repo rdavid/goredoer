@@ -10,7 +10,7 @@ ENV \
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN \
 	apk add --no-cache --update \
-		curl~=8.4 \
+		curl~=8.5 \
 		zstd~=1.5 \
 		&& rm -rf /var/cache/apk/* \
 		&& curl --location --remote-name --silent $URL \
@@ -22,7 +22,7 @@ RUN \
 		&& find . ! -path . -type d -exec rm -fr {} + \
 		&& find . ! -name goredo -type f -exec rm -f {} +
 
-FROM alpine:3.18.5
+FROM alpine:3.19.0
 LABEL maintainer=David\ Rabkin\ <david@rabkin.co.il>
 COPY LICENSE /licenses/LICENSE
 COPY --from=builder /go/goredo /
