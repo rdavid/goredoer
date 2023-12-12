@@ -44,7 +44,7 @@ Include the following lines in your `Containerfile`:
 
 [,sh]
 ----
-COPY --from=ghcr.io/rdavid/goredoer:0.9.20231111 /goredo .
+COPY --from=ghcr.io/rdavid/goredoer:0.9.20231212 /goredo .
 RUN goredo -symlinks
 ----
 
