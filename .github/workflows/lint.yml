@@ -10,6 +10,9 @@ jobs:
         with:
           dockerfile: Containerfile
           recursive: true
+      - uses: errata-ai/vale-action@reviewdog
+        with:
+          fail_on_error: true
       - uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: .github/*.yml .github/workflows/*.yml
