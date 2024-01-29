@@ -17,7 +17,7 @@ RUN \
 		&& unset GOPATH \
 		&& go build -mod=vendor
 
-FROM alpine:3.19.0
+FROM alpine:3.19.1
 LABEL maintainer=David\ Rabkin\ <david@rabkin.co.il>
 COPY LICENSE /licenses/LICENSE
 COPY --from=builder /go/goredo /
