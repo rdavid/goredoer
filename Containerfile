@@ -18,6 +18,12 @@ RUN \
 		&& go build -mod=vendor
 
 FROM alpine:3.19.1
-LABEL maintainer=David\ Rabkin\ <david@rabkin.co.il>
+LABEL \
+	maintainer=David\ Rabkin\ <david@rabkin.co.il> \
+	org.opencontainers.image.description='Includes the Goredo utility.' \
+	org.opencontainers.image.licenses=0BSD \
+	org.opencontainers.image.source=https://github.com/rdavid/goredoer \
+	org.opencontainers.image.title=Goredoer \
+	org.opencontainers.image.vendor=David\ Rabkin
 COPY LICENSE /licenses/LICENSE
 COPY --from=builder /go/goredo /
