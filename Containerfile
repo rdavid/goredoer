@@ -10,12 +10,12 @@ RUN \
 	apk add --no-cache --update \
 		curl~=8.5 \
 		zstd~=1.5 \
-		&& curl --location --remote-name --silent $URL \
-		&& printf %s\ \ %s $SHA $NME | sha256sum -cs \
-		&& zstd --decompress < $NME | \
-			tar --extract --file - --strip-components=2 goredo-$VER/src \
-		&& unset GOPATH \
-		&& go build -mod=vendor
+	&& curl --location --remote-name --silent $URL \
+	&& printf %s\ \ %s $SHA $NME | sha256sum -cs \
+	&& zstd --decompress < $NME | \
+		tar --extract --file - --strip-components=2 goredo-$VER/src \
+	&& unset GOPATH \
+	&& go build -mod=vendor
 
 FROM alpine:3.19.1
 LABEL \
