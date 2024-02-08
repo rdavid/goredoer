@@ -5,3 +5,8 @@
 .github/styles/proselint
 .github/styles/Readability
 .github/styles/write-good
+.redo
+1
+build
+clean
+lint
