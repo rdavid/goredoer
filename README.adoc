@@ -12,7 +12,7 @@
 
 = Goredoer
 
-image:https://github.com/rdavid/goredoer/actions/workflows/lint.yml/badge.svg[linters,link=https://github.com/rdavid/goredoer/actions/workflows/lint.yml]
+image:https://github.com/rdavid/goredoer/actions/workflows/test.yml/badge.svg[test,link=https://github.com/rdavid/goredoer/actions/workflows/test.yml]
 image:https://github.com/rdavid/goredoer/actions/workflows/publish.yml/badge.svg[publisher,link=https://github.com/rdavid/goredoer/actions/workflows/publish.yml]
 image:https://hitsofcode.com/github/rdavid/goredoer?branch=master&label=hits%20of%20code[hits of code,link=https://hitsofcode.com/view/github/rdavid/goredoer?branch=master]
 image:https://img.shields.io/github/v/release/rdavid/goredoer?color=blue&label=%20&logo=semver&logoColor=white&style=flat[release),link=https://github.com/rdavid/goredoer/releases]
