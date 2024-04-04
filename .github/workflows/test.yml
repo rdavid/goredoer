@@ -12,6 +12,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - uses: redhat-actions/buildah-build@v2
+        with:
+          containerfiles: Containerfile
+          tags: test:v1
       - uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: Containerfile
