@@ -2,8 +2,6 @@
 name: publish
 'on':
   push:
-    schedule:
-      - cron: '0 5 * * *'
     tags:
       - v*
 env:
