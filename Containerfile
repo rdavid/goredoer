@@ -1,4 +1,4 @@
-FROM golang:1.22.2-alpine AS builder
+FROM golang:1.22.4-alpine AS builder
 ENV \
 	SHA=5663ed0da911f1b2c0d13e92cc06ede3738639edb48499eb9e53d38e8e435d75 \
 	VER=2.6.2
@@ -8,7 +8,7 @@ ENV \
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN \
 	apk add --no-cache --update \
-		curl~=8.5 \
+		curl~=8.7 \
 		zstd~=1.5 \
 	&& curl --location --remote-name --silent $URL \
 	&& printf %s\ \ %s $SHA $NME | sha256sum -cs \
