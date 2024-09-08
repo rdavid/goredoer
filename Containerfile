@@ -1,4 +1,4 @@
-FROM golang:1.23.0-alpine AS builder
+FROM golang:1.23.1-alpine AS builder
 ENV \
 	SHA=5663ed0da911f1b2c0d13e92cc06ede3738639edb48499eb9e53d38e8e435d75 \
 	VER=2.6.2
@@ -17,7 +17,7 @@ RUN \
 	&& unset GOPATH \
 	&& go build -mod=vendor
 
-FROM alpine:3.19.1
+FROM alpine:3.20.3
 LABEL \
 	maintainer=David\ Rabkin\ <david@rabkin.co.il> \
 	org.opencontainers.image.description='Includes the Goredo utility.' \
