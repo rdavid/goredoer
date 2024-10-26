@@ -12,6 +12,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - run: sudo apt-get install asciidoctor
       - uses: redhat-actions/buildah-build@v2
         with:
           containerfiles: Containerfile
