@@ -1,7 +1,7 @@
 FROM golang:1.23.3-alpine AS builder
 ENV \
-	SHA=5663ed0da911f1b2c0d13e92cc06ede3738639edb48499eb9e53d38e8e435d75 \
-	VER=2.6.2
+	SHA=18157db281db53b7c1a90ed23d2d0b847ff2ada2e69725908a89a6f544cee0fd \
+	VER=2.6.3
 ENV \
 	NME=goredo-$VER.tar.zst \
 	URL=http://www.goredo.cypherpunks.ru/download/goredo-$VER.tar.zst
