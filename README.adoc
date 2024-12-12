@@ -6,7 +6,7 @@
 :url-alpine: https://github.com/rdavid/shellbase/blob/master/container/alpine/Containerfile
 :url-containerfile: https://github.com/rdavid/goredoer/blob/master/Containerfile
 :url-cv: http://cv.rabkin.co.il
-:url-goredo: http://www.goredo.cypherpunks.ru/Install.html
+:url-goredo: http://www.goredo.cypherpunks.su/Install.html
 :url-hadolint: https://github.com/hadolint/hadolint
 :url-license: https://github.com/rdavid/goredoer/blob/master/LICENSE
 :url-redo: http://cr.yp.to/redo.html

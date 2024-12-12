@@ -4,7 +4,7 @@ ENV \
 	VER=2.6.3
 ENV \
 	NME=goredo-$VER.tar.zst \
-	URL=http://www.goredo.cypherpunks.ru/download/goredo-$VER.tar.zst
+	URL=http://www.goredo.cypherpunks.su/download/goredo-$VER.tar.zst
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN \
 	apk add --no-cache --update \
