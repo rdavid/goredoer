@@ -1,4 +1,4 @@
-FROM golang:1.23.3-alpine AS builder
+FROM golang:1.23.4-alpine AS builder
 ENV \
 	SHA=18157db281db53b7c1a90ed23d2d0b847ff2ada2e69725908a89a6f544cee0fd \
 	VER=2.6.3
