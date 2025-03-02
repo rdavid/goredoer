@@ -1,4 +1,4 @@
-FROM golang:1.23.5-alpine AS builder
+FROM golang:1.24.0-alpine AS builder
 ENV \
 	SHA=0e53b444a6eb9c5a13088cd680e2e697a5a0e059710c1ad8e30879fe9dc0770c \
 	VER=2.6.4
@@ -8,7 +8,7 @@ ENV \
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN \
 	apk add --no-cache --update \
-		curl~=8.11 \
+		curl~=8.12 \
 		zstd~=1.5 \
 	&& curl --location --remote-name --silent $URL \
 	&& printf %s\ \ %s $SHA $NME | sha256sum -cs \
@@ -17,7 +17,7 @@ RUN \
 	&& unset GOPATH \
 	&& go build -mod=vendor
 
-FROM alpine:3.21.2
+FROM alpine:3.21.3
 LABEL \
 	maintainer=David\ Rabkin\ <david@rabkin.co.il> \
 	org.opencontainers.image.description='Includes the Goredo utility.' \
