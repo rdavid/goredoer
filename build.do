@@ -1,11 +1,12 @@
 # shellcheck shell=sh
 # vi:et lbr noet sw=2 ts=2 tw=79 wrap
-# Copyright 2024 David Rabkin
+# SPDX-FileCopyrightText: 2024-2025 David Rabkin
+# SPDX-License-Identifier: 0BSD
 redo-ifchange Containerfile
 
 # shellcheck disable=SC2034 # Variable appears unused.
 readonly \
-	BASE_APP_VERSION=0.9.20240208 \
+	BASE_APP_VERSION=0.9.20250606 \
 	BASE_MIN_VERSION=0.9.20240202 \
 	BSH=/usr/local/bin/base.sh
 [ -r "$BSH" ] || {

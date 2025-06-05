@@ -10,6 +10,7 @@
 :url-hadolint: https://github.com/hadolint/hadolint
 :url-license: https://github.com/rdavid/goredoer/blob/master/LICENSES/0BSD.txt
 :url-redo: http://cr.yp.to/redo.html
+:url-reuse: https://github.com/fsfe/reuse-action
 :url-shellbase: https://github.com/rdavid/shellbase
 :url-shellcheck: https://github.com/koalaman/shellcheck
 :url-shfmt: https://github.com/mvdan/sh
@@ -63,9 +64,9 @@ RUN goredo -symlinks
 The project uses Daniel J. Bernstein's build system {url-redo}[`redo`].
 You can install Sergey Matveev's {url-goredo}[`goredo`] implementation.
 `redo lint` applies the following linters to the source files:
-{url-hadolint}[`hadolint`], {url-shellcheck}[`shellcheck`],
-{url-shfmt}[`shfmt`], {url-typos}[`typos`], {url-vale}[`vale`],
-{url-yamllint}[`yamllint`].
+{url-hadolint}[`hadolint`], {url-reuse}[`reuse`],
+{url-shellcheck}[`shellcheck`], {url-shfmt}[`shfmt`], {url-typos}[`typos`],
+{url-vale}[`vale`], {url-yamllint}[`yamllint`].
 `redo build` builds the image from the {url-containerfile}[`Containerfile`].
 
 == License
