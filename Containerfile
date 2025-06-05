@@ -17,7 +17,7 @@ RUN \
 	&& unset GOPATH \
 	&& go build -mod=vendor
 
-FROM alpine:3.21.3
+FROM alpine:3.22.0
 LABEL \
 	maintainer=David\ Rabkin\ <david@rabkin.co.il> \
 	org.opencontainers.image.description='Includes the Goredo utility.' \
