@@ -27,5 +27,5 @@ LABEL \
 	org.opencontainers.image.source=https://github.com/rdavid/goredoer \
 	org.opencontainers.image.title=Goredoer \
 	org.opencontainers.image.vendor=David\ Rabkin
-COPY LICENSES/0BSD.txt /licenses/
+COPY LICENSES/* /licenses/
 COPY --from=builder /go/goredo /
