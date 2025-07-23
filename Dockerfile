@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: 0BSD
 # The file is an exact copy of Containerfile and exists solely for GitHub
 # Dependabot.
-FROM golang:1.24.4-alpine AS builder
+FROM golang:1.24.5-alpine AS builder
 ENV \
 	SHA=0e53b444a6eb9c5a13088cd680e2e697a5a0e059710c1ad8e30879fe9dc0770c \
 	VER=2.6.4
