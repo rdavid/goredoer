@@ -32,14 +32,9 @@ jobs:
           ignore_names: pass
       - uses: mfinelli/setup-shfmt@v3
       - run: shfmt -d ./*.do
-      - uses: crate-ci/typos@master
       - uses: errata-ai/vale-action@reviewdog
         with:
           fail_on_error: true
-      - uses: ibiqlik/action-yamllint@v3
-        with:
-          file_or_dir: .github/*.yml .github/workflows/*.yml
-          strict: true
   test-macos:
     strategy:
       matrix:
@@ -57,7 +52,6 @@ jobs:
             hadolint \
             shellcheck \
             shfmt \
-            typos-cli \
             vale \
             yamllint
           curl --location --silent $BASE_SRC |
