@@ -8,6 +8,7 @@
 :img-publish: https://github.com/rdavid/goredoer/actions/workflows/publish.yml/badge.svg
 :img-releases: https://img.shields.io/github/v/release/rdavid/goredoer?color=blue&label=%20&logo=semver&logoColor=white&style=flat
 :img-test: https://github.com/rdavid/goredoer/actions/workflows/test.yml/badge.svg
+:url-actionlint: https://github.com/rhysd/actionlint
 :url-alpine: https://github.com/rdavid/shellbase/blob/master/container/alpine/Containerfile
 :url-containerfile: https://github.com/rdavid/goredoer/blob/master/Containerfile
 :url-cv: http://cv.rabkin.co.il
@@ -73,9 +74,14 @@ RUN goredo -symlinks
 The project uses Daniel J. Bernstein's build system {url-redo}[`redo`].
 You can install Sergey Matveev's {url-goredo}[`goredo`] implementation.
 `redo lint` applies the following linters to the source files:
-{url-hadolint}[`hadolint`], {url-reuse}[`reuse`],
-{url-shellcheck}[`shellcheck`], {url-shfmt}[`shfmt`], {url-typos}[`typos`],
-{url-vale}[`vale`], {url-yamllint}[`yamllint`].
+{url-actionlint}[`actionlint`],
+{url-hadolint}[`hadolint`],
+{url-reuse}[`reuse`],
+{url-shellcheck}[`shellcheck`],
+{url-shfmt}[`shfmt`],
+{url-typos}[`typos`],
+{url-vale}[`vale`],
+{url-yamllint}[`yamllint`].
 `redo build` builds the image from the {url-containerfile}[`Containerfile`].
 
 == License
