@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: 2023-2025 David Rabkin
+# SPDX-License-Identifier: 0BSD
+---
+name: build
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-22.04
+          - ubuntu-24.04
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: redhat-actions/buildah-build@v2
+        with:
+          containerfiles: ./Containerfile
+          tags: test:v1
