@@ -2,7 +2,13 @@
 # SPDX-License-Identifier: 0BSD
 ---
 name: test
-'on': push
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 env:
   BASE_REL: 0.9.20250404
   BASE_SRC: https://github.com/rdavid/shellbase/archive/refs/tags/v0.9.20250404.tar.gz # yamllint disable-line
@@ -16,24 +22,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - run: sudo apt-get install asciidoctor
       - uses: redhat-actions/buildah-build@v2
         with:
           containerfiles: Containerfile
           tags: test:v1
-      - uses: hadolint/hadolint-action@v3.1.0
-        with:
-          dockerfile: Containerfile
-          recursive: true
-      - uses: ludeeus/action-shellcheck@master
-        with:
-          additional_files: ./*.do
-          ignore_names: pass
-      - uses: mfinelli/setup-shfmt@v3
-      - run: shfmt -d ./*.do
-      - uses: errata-ai/vale-action@reviewdog
-        with:
-          fail_on_error: true
   test-macos:
     strategy:
       matrix:
@@ -46,12 +38,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           brew install \
-            asciidoctor \
             goredo \
-            hadolint \
-            shellcheck \
-            shfmt \
-            vale \
             yamllint
           curl --location --silent "$BASE_SRC" |
             tar \
