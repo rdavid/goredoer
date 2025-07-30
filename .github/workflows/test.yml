@@ -1,0 +1,47 @@
+# SPDX-FileCopyrightText: 2023-2025 David Rabkin
+# SPDX-License-Identifier: 0BSD
+# This workflow has limitations -- Ubuntu lacks a redo package, and macOS
+# cannot run containers natively.
+---
+name: test
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+env:
+  BASE_REL: 0.9.20250404
+  BASE_SRC: https://github.com/rdavid/shellbase/archive/refs/tags/v0.9.20250404.tar.gz # yamllint disable-line
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - macos-13
+          - macos-14
+          - macos-15
+          - ubuntu-22.04
+          - ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - if: runner.os == 'Linux'
+        uses: redhat-actions/buildah-build@v2
+        with:
+          containerfiles: ./Containerfile
+          image: goredoer
+          tags: latest
+      - if: runner.os == 'macOS'
+        run: |
+          brew install goredo
+          curl --location --silent "$BASE_SRC" |
+            tar \
+              --directory /usr/local/bin \
+              --extract \
+              --gzip \
+              --strip-components=2 \
+              shellbase-"$BASE_REL"/lib/base.sh
+          redo -xx lint
