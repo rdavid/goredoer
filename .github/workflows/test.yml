@@ -27,7 +27,7 @@ jobs:
           - ubuntu-22.04
           - ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - if: runner.os == 'Linux'
         uses: redhat-actions/buildah-build@v2
         with:
