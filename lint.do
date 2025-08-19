@@ -3,15 +3,15 @@
 # SPDX-FileCopyrightText: 2024-2025 David Rabkin
 # SPDX-License-Identifier: 0BSD
 redo-ifchange \
-	.github/*.yml \
-	.github/workflows/*.yml \
+	./.github/*.yml \
+	./.github/workflows/*.yml \
 	./*.do \
-	Containerfile \
-	README.adoc
+	./Containerfile \
+	./README.adoc
 
 # shellcheck disable=SC2034 # Variable appears unused.
 readonly \
-	BASE_APP_VERSION=0.9.20250803 \
+	BASE_APP_VERSION=0.9.20250819 \
 	BASE_MIN_VERSION=0.9.20240202 \
 	BSH=/usr/local/bin/base.sh
 [ -r "$BSH" ] || {
