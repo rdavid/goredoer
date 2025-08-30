@@ -7,29 +7,30 @@ name: publish
     tags:
       - v*
 env:
-  REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  REGISTRY: ghcr.io
 jobs:
   publish:
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
       - uses: docker/setup-qemu-action@v3
       - uses: docker/setup-buildx-action@v3
       - uses: docker/login-action@v3
         with:
+          password: ${{ secrets.GITHUB_TOKEN }}
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/metadata-action@v5
         id: meta
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           labels: |
             maintainer=David Rabkin
-            org.opencontainers.image.description=Includes the Goredo utility.
+            org.opencontainers.image.description=Includes the Goredo utility
             org.opencontainers.image.licenses=0BSD
-            org.opencontainers.image.source=https://github.com/rdavid/goredoer
+            org.opencontainers.image.source=${{ github.repositoryUrl }}
             org.opencontainers.image.title=Goredoer
             org.opencontainers.image.vendor=David Rabkin
           tags: |
@@ -38,10 +39,10 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}},priority=901
       - uses: docker/build-push-action@v6
-        id: build-and-push
         with:
           context: .
           file: Containerfile
+          labels: ${{ steps.meta.outputs.labels }}
           platforms: "\
             linux/386,\
             linux/amd64,\
@@ -52,4 +53,3 @@ jobs:
             linux/s390x"
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
