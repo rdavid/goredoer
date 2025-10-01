@@ -31,7 +31,7 @@ jobs:
           tags: latest
       - if: runner.os == 'macOS'
         run: |
-          brew update
+          brew upgrade
           brew install goredo
           curl --location --silent "$BASE_SRC" |
             tar \
