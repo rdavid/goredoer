@@ -62,7 +62,7 @@ Include the following lines in your `Containerfile`:
 
 [,sh]
 ----
-COPY --from=ghcr.io/rdavid/goredoer:0.9.20250808 /goredo .
+COPY --from=ghcr.io/rdavid/goredoer:0.9.20251010 /goredo .
 RUN goredo -symlinks
 ----
 
