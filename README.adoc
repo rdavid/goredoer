@@ -28,7 +28,25 @@
 :url-vale: https://vale.sh
 :url-yamllint: https://github.com/adrienverge/yamllint
 
-= Goredoer
+== Goredoer
+
+// The width is set to 73 characters, and the height is 11 lines. An ASCII art
+// generator is used with the specific font Colossal:
+//  http://patorjk.com/software/taag/#p=display&f=Colossal&t=goredoer
+[,sh]
+----
+                                           888                           
+                                           888                           
+                                           888                           
+     .d88b.   .d88b.  888d888 .d88b.   .d88888  .d88b.   .d88b.  888d888 
+    d88P"88b d88""88b 888P"  d8P  Y8b d88" 888 d88""88b d8P  Y8b 888P"   
+    888  888 888  888 888    88888888 888  888 888  888 88888888 888     
+    Y88b 888 Y88..88P 888    Y8b.     Y88b 888 Y88..88P Y8b.     888     
+     "Y88888  "Y88P"  888     "Y8888   "Y88888  "Y88P"   "Y8888  888     
+         888                                                             
+    Y8b d88P                                                             
+     "Y88P"                                                              
+----
 
 image:{img-test}[test,link={url-test}]
 image:{img-publish}[publish,link={url-publish}]
