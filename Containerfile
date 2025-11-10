@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2023-2025 David Rabkin
 # SPDX-License-Identifier: 0BSD
-FROM golang:1.25.3-alpine AS builder
+FROM golang:1.25.4-alpine AS builder
 ENV \
 	SHA=16c5f14d448357af32c782b2537c41afa71f9dca071c480107686e110bf92a3f \
 	VER=2.6.5
