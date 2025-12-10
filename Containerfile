@@ -10,7 +10,7 @@ ENV \
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN \
 	apk add --no-cache --update \
-		curl~=8.14 \
+		curl~=8.17 \
 		zstd~=1.5 \
 	&& curl --location --remote-name --silent $URL \
 	&& printf %s\ \ %s $SHA $NME | sha256sum -cs \
@@ -19,7 +19,7 @@ RUN \
 	&& unset GOPATH \
 	&& go build -mod=vendor
 
-FROM alpine:3.22.2
+FROM alpine:3.23.0
 LABEL \
 	maintainer=David\ Rabkin\ <david@rabkin.co.il> \
 	org.opencontainers.image.description='Includes the Goredo utility.' \
