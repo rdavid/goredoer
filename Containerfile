@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: 0BSD
 FROM golang:1.25.5-alpine AS builder
 ENV \
-	SHA=16c5f14d448357af32c782b2537c41afa71f9dca071c480107686e110bf92a3f \
-	VER=2.6.5
+	SHA=7aaab717697b1c15f24164122f80e769a82a6a157b01a6590365c749d326bd06 \
+	VER=2.8.0
 ENV \
 	NME=goredo-$VER.tar.zst \
 	URL=http://www.goredo.cypherpunks.su/download/goredo-$VER.tar.zst
