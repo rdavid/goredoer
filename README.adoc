@@ -12,7 +12,7 @@
 :url-alpine: https://github.com/rdavid/shellbase/blob/master/container/alpine/Containerfile
 :url-containerfile: https://github.com/rdavid/goredoer/blob/master/Containerfile
 :url-cv: http://cv.rabkin.co.il
-:url-goredo: http://www.goredo.cypherpunks.su/Install.html
+:url-goredo: http://www.goredo.cypherpunks.su/INSTALL.html
 :url-hadolint: https://github.com/hadolint/hadolint
 :url-hoc: https://hitsofcode.com/view/github/rdavid/goredoer?branch=master
 :url-license: https://github.com/rdavid/goredoer/blob/master/LICENSES/0BSD.txt
