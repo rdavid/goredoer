@@ -1,9 +1,9 @@
-# SPDX-FileCopyrightText: 2023-2025 David Rabkin
+# SPDX-FileCopyrightText: 2023-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
 FROM golang:1.25.5-alpine AS builder
 ENV \
-	SHA=7aaab717697b1c15f24164122f80e769a82a6a157b01a6590365c749d326bd06 \
-	VER=2.8.0
+	SHA=81f84b4b4a3c743334f921de516e0f9495da1571df216e1d07714fa6d82f4ee4 \
+	VER=2.9.0
 ENV \
 	NME=goredo-$VER.tar.zst \
 	URL=http://www.goredo.cypherpunks.su/download/goredo-$VER.tar.zst
