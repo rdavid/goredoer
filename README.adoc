@@ -51,7 +51,7 @@
 image:{img-test}[test,link={url-test}]
 image:{img-publish}[publish,link={url-publish}]
 image:{img-hoc}[hits of code,link={url-hoc}]
-image:{img-releases}[release),link={url-releases}]
+image:{img-releases}[release,link={url-releases}]
 image:{img-license}[license,link={url-license}]
 
 toc::[]
@@ -60,12 +60,12 @@ toc::[]
 
 The container image `goredoer` downloads, validates, extracts, and builds
 Sergey Matveev's {url-goredo}[`goredo`] utility.
-{url-goredo}[`goredo`] implements Daniel J. Bernstein's build system
-{url-redo}[`redo`] in Go.
+{url-goredo}[`goredo`] provides a Go implementation of Daniel J. Bernstein's
+build system {url-redo}[`redo`].
 
 == Build
 
-To build the image locally, start VM if needed `podman machine start`:
+To build the image locally, start the Podman VM first if needed:
 
 [,sh]
 ----
@@ -76,7 +76,7 @@ git clone git@github.com:rdavid/goredoer.git &&
 
 == Using
 
-Include the following lines in your `Containerfile`:
+Add the following lines to your `Containerfile`:
 
 [,sh]
 ----
@@ -84,14 +84,15 @@ COPY --from=ghcr.io/rdavid/goredoer:0.9.20251111 /goredo .
 RUN goredo -symlinks
 ----
 
-{url-shellbase}[`shellbase`] uses `goredoer` image in its
+{url-shellbase}[`shellbase`] uses the `goredoer` image in its
 {url-alpine}[`Containerfile`].
 
 == Test
 
 The project uses Daniel J. Bernstein's build system {url-redo}[`redo`].
-You can install Sergey Matveev's {url-goredo}[`goredo`] implementation.
-`redo lint` applies the following linters to the source files:
+Install Sergey Matveev's {url-goredo}[`goredo`] implementation to run the
+project tasks.
+`redo lint` runs the following linters on the source files:
 {url-actionlint}[`actionlint`],
 {url-hadolint}[`hadolint`],
 {url-reuse}[`reuse`],

@@ -10,7 +10,7 @@ readonly \
 	BASE_MIN_VERSION=0.9.20240202 \
 	BSH=/usr/local/bin/base.sh
 [ -r "$BSH" ] || {
-	printf >&2 Install\ Shellbase.\\n
+	printf >&2 Install\ shellbase\ first.\\n
 	exit 1
 }
 set -- "$@" --quiet
@@ -21,7 +21,7 @@ validate_cmd podman
 STOP_VM=YES
 out="$(podman machine start 2>&1)" || {
 	[ $? = 125 ] || die "$out"
-	printf >&2 'VM already running or starting.\n'
+	printf >&2 'VM is already running or still starting.\n'
 	STOP_VM=NO
 }
 out="$(podman build --file ./Containerfile --format docker . 2>&1)" || die "$out"

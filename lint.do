@@ -14,7 +14,7 @@ readonly \
 	BASE_APP_VERSION=0.9.20250831 \
 	BSH=/usr/local/bin/base.sh
 [ -r "$BSH" ] || {
-	printf >&2 Install\ Shellbase.\\n
+	printf >&2 Install\ shellbase\ first.\\n
 	exit 1
 }
 set -- "$@" --quiet
