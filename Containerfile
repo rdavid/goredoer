@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2023-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
-FROM golang:1.26.1-alpine AS builder
+FROM golang:1.26.3-alpine AS builder
 ENV \
 	SHA=b15cf99b6d11e586223f24712d90d739e6e115abe4b423d26da9412b90339f41 \
 	VER=2.9.2
@@ -19,7 +19,7 @@ RUN \
 	&& unset GOPATH \
 	&& go build -mod=vendor
 
-FROM alpine:3.23.3
+FROM alpine:3.23.4
 LABEL \
 	maintainer=David\ Rabkin\ <david@rabkin.co.il> \
 	org.opencontainers.image.description='Includes the Goredo utility.' \
