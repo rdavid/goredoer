@@ -11,7 +11,7 @@ redo-ifchange \
 
 # shellcheck disable=SC2034 # Variable appears unused.
 readonly \
-	BASE_APP_VERSION=0.9.20260402 \
+	BASE_APP_VERSION=0.9.20260610 \
 	BSH=/usr/local/bin/base.sh
 [ -r "$BSH" ] || {
 	printf >&2 'Install shellbase first (missing %s).\n' "$BSH"
@@ -21,19 +21,17 @@ set -- "$@" --quiet
 
 # shellcheck disable=SC1090 # File not following.
 . "$BSH"
-cmd_exists actionlint && actionlint
-cmd_exists hadolint && hadolint ./Containerfile
-cmd_exists shellcheck && shellcheck ./*.do
-cmd_exists shfmt && shfmt -d ./*.do
-cmd_exists typos && typos
-cmd_exists vale && {
-	vale sync
-	vale ./README.adoc
-}
-cmd_exists yamllint &&
-	yamllint \
-		./.github/*.yml \
-		./.github/workflows/*.yml
 
-# Gracefully handle missing last tool without failing the script.
-:
+# Runs a linter only when its command is installed, propagating failures.
+run_if() {
+	cmd_exists "$1" || return 0
+	"$@"
+}
+run_if actionlint
+run_if hadolint ./Containerfile
+run_if shellcheck ./*.do
+run_if shfmt -d ./*.do
+run_if typos
+run_if vale sync
+run_if vale ./README.adoc
+run_if yamllint ./.github/*.yml ./.github/workflows/*.yml
