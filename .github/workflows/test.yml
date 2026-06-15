@@ -26,7 +26,6 @@ jobs:
         os:
           - macos-14
           - macos-15
-          # - macos-15-intel
           - ubuntu-22.04
           - ubuntu-24.04
     steps:
@@ -39,7 +38,6 @@ jobs:
           tags: latest
       - if: runner.os == 'macOS'
         run: |
-          brew upgrade
           brew install goredo
           curl --location --silent "$BASE_SRC" |
             tar \
