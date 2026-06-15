@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023-2025 David Rabkin
+# SPDX-FileCopyrightText: 2023-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
 ---
 name: publish
@@ -6,6 +6,9 @@ name: publish
   push:
     tags:
       - v*
+permissions:
+  contents: read
+  packages: write
 env:
   IMAGE_NAME: ${{ github.repository }}
   REGISTRY: ghcr.io
