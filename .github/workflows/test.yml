@@ -30,6 +30,8 @@ jobs:
           - ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - if: runner.os == 'Linux'
         uses: redhat-actions/buildah-build@v2
         with:
