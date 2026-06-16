@@ -19,7 +19,9 @@ jobs:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
-      - run: sudo apt-get install asciidoctor
+      - run: |
+          sudo apt-get update
+          sudo apt-get install --yes asciidoctor
       - uses: vale-cli/vale-action@2.1.2
         with:
           fail_on_error: true
