@@ -30,11 +30,11 @@ jobs:
           - ubuntu-22.04
           - ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.3
         with:
           persist-credentials: false
       - if: runner.os == 'Linux'
-        uses: redhat-actions/buildah-build@v2
+        uses: redhat-actions/buildah-build@v2.13
         with:
           containerfiles: ./Containerfile
           image: goredoer
