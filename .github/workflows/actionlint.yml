@@ -12,7 +12,7 @@ concurrency:
 permissions:
   contents: read
 env:
-  URL: https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash # yamllint disable-line
+  VER: 1.7.12
 jobs:
   actionlint:
     runs-on: ubuntu-24.04
@@ -22,5 +22,7 @@ jobs:
         with:
           persist-credentials: false
       - id: get
-        run: bash <(curl --silent "$URL")
+        env:
+          URL: https://raw.githubusercontent.com/rhysd/actionlint/v${{ env.VER }}/scripts/download-actionlint.bash # yamllint disable-line
+        run: bash <(curl --silent "$URL") "$VER"
       - run: ${{ steps.get.outputs.executable }}
