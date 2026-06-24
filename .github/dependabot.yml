@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023-2025 David Rabkin
+# SPDX-FileCopyrightText: 2023-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
 ---
 version: 2
@@ -8,8 +8,12 @@ updates:
     schedule:
       interval: daily
     commit-message:
-      prefix: '[docker] '
+      prefix: build
+      include: scope
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: daily
+    commit-message:
+      prefix: build
+      include: scope
