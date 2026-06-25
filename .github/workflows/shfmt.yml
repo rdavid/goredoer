@@ -1,5 +1,8 @@
 # SPDX-FileCopyrightText: 2025-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
+# The .do scripts are POSIX sh (`# shellcheck shell=sh`) but have no shebang,
+# so shfmt defaults to its bash dialect and silently accepts bashisms. Pin
+# `-ln posix` so shfmt parses them as sh and rejects bash-only constructs.
 ---
 name: shfmt
 'on':
@@ -20,4 +23,4 @@ jobs:
         with:
           persist-credentials: false
       - uses: mfinelli/setup-shfmt@v4.0.1
-      - run: shfmt -d ./*.do
+      - run: shfmt -ln posix -d ./*.do
