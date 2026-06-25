@@ -1,5 +1,7 @@
 # SPDX-FileCopyrightText: 2025-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
+# A single Containerfile lives at the repo root, so lint it directly.
+# recursive mode would only build a fragile `**/./Containerfile` glob.
 ---
 name: hadolint
 'on':
@@ -21,5 +23,4 @@ jobs:
           persist-credentials: false
       - uses: hadolint/hadolint-action@v3.3.0
         with:
-          dockerfile: ./Containerfile
-          recursive: true
+          dockerfile: Containerfile
