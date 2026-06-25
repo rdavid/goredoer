@@ -10,6 +10,10 @@ updates:
     commit-message:
       prefix: build
       include: scope
+    groups:
+      docker:
+        patterns:
+          - '*'
   - package-ecosystem: github-actions
     directory: /
     schedule:
@@ -17,3 +21,7 @@ updates:
     commit-message:
       prefix: build
       include: scope
+    groups:
+      actions:
+        patterns:
+          - '*'

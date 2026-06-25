@@ -11,8 +11,7 @@ concurrency:
   cancel-in-progress: true
 permissions:
   contents: read
-env:
-  VER: 1.7.12
+  pull-requests: write
 jobs:
   actionlint:
     runs-on: ubuntu-24.04
@@ -21,8 +20,8 @@ jobs:
       - uses: actions/checkout@v7.0.0
         with:
           persist-credentials: false
-      - id: get
-        env:
-          URL: https://raw.githubusercontent.com/rhysd/actionlint/v${{ env.VER }}/scripts/download-actionlint.bash # yamllint disable-line
-        run: bash <(curl --silent "$URL") "$VER"
-      - run: ${{ steps.get.outputs.executable }}
+      - uses: reviewdog/action-actionlint@v1.72.0
+        with:
+          fail_level: error
+          filter_mode: nofilter
+          reporter: github-pr-review
