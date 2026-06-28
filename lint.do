@@ -29,6 +29,7 @@ run_if() {
 }
 run_if actionlint
 run_if hadolint ./Containerfile
+run_if reuse lint
 run_if shellcheck ./*.do
 run_if shfmt -d ./*.do
 run_if typos

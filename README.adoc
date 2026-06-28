@@ -19,7 +19,7 @@
 :url-publish: https://github.com/rdavid/goredoer/actions/workflows/publish.yml
 :url-redo: http://cr.yp.to/redo.html
 :url-releases: https://github.com/rdavid/goredoer/releases
-:url-reuse: https://github.com/fsfe/reuse-action
+:url-reuse: https://github.com/fsfe/reuse-tool
 :url-shellbase: https://github.com/rdavid/shellbase
 :url-shellcheck: https://github.com/koalaman/shellcheck
 :url-shfmt: https://github.com/mvdan/sh
@@ -91,17 +91,20 @@ RUN goredo -symlinks
 
 The project uses Daniel J. Bernstein's build system {url-redo}[`redo`].
 Install Sergey Matveev's {url-goredo}[`goredo`] implementation to run the
-project tasks.
-`redo lint` runs the following linters on the source files:
-{url-actionlint}[`actionlint`],
-{url-hadolint}[`hadolint`],
-{url-reuse}[`reuse`],
-{url-shellcheck}[`shellcheck`],
-{url-shfmt}[`shfmt`],
-{url-typos}[`typos`],
-{url-vale}[`vale`],
-{url-yamllint}[`yamllint`].
-`redo build` builds the image from the {url-containerfile}[`Containerfile`].
+project tasks:
+
+* `redo build` builds the image from the {url-containerfile}[`Containerfile`].
+* `redo lint` runs the following linters on the source files:
+  {url-actionlint}[`actionlint`],
+  {url-hadolint}[`hadolint`],
+  {url-reuse}[`reuse`],
+  {url-shellcheck}[`shellcheck`],
+  {url-shfmt}[`shfmt`],
+  {url-typos}[`typos`],
+  {url-vale}[`vale`],
+  {url-yamllint}[`yamllint`].
+* `redo all` runs both `build` and `lint`.
+* `redo clean` removes the build artifacts.
 
 == License
 
