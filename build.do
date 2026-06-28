@@ -2,9 +2,10 @@
 # vi: lbr noet sw=2 ts=2 tw=79 wrap
 # SPDX-FileCopyrightText: 2024-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
+# Variable appears unused and file not following:
+#  shellcheck disable=SC2034,SC1090
 redo-ifchange ./Containerfile
 
-# shellcheck disable=SC2034 # Variable appears unused.
 readonly \
 	BASE_APP_VERSION=0.9.20260628 \
 	BASE_MIN_VERSION=0.9.20240202 \
@@ -15,7 +16,6 @@ readonly \
 }
 set -- "$@" --quiet
 
-# shellcheck disable=SC1090 # File not following.
 . "$BSH"
 validate_cmd podman
 

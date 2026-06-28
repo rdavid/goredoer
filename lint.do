@@ -2,6 +2,8 @@
 # vi: lbr noet sw=2 ts=2 tw=79 wrap
 # SPDX-FileCopyrightText: 2024-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
+# Variable appears unused and file not following:
+#  shellcheck disable=SC2034,SC1090
 redo-ifchange \
 	./.github/*.yml \
 	./.github/workflows/*.yml \
@@ -9,7 +11,6 @@ redo-ifchange \
 	./Containerfile \
 	./README.adoc
 
-# shellcheck disable=SC2034 # Variable appears unused.
 readonly \
 	BASE_APP_VERSION=0.9.20260628 \
 	BSH=/usr/local/bin/base.sh
@@ -19,7 +20,6 @@ readonly \
 }
 set -- "$@" --quiet
 
-# shellcheck disable=SC1090 # File not following.
 . "$BSH"
 
 # Runs a linter only when its command is installed, propagating failures.
