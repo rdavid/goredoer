@@ -1,12 +1,16 @@
 # SPDX-FileCopyrightText: 2023-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
+#
+# Downloads goredo from the FreeBSD ports distfiles mirror because the
+# upstream site www.goredo.stargrave.org does not resolve. The pinned
+# SHA256 confirms the mirror serves the identical upstream tarball.
 FROM golang:1.26.4-alpine AS builder
 ENV \
 	SHA=b15cf99b6d11e586223f24712d90d739e6e115abe4b423d26da9412b90339f41 \
 	VER=2.9.2
 ENV \
 	NME=goredo-$VER.tar.zst \
-	URL=http://www.goredo.stargrave.org/download/goredo-$VER.tar.zst
+	URL=http://distcache.freebsd.org/ports-distfiles/goredo-$VER.tar.zst
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN \
 	apk add --no-cache --update \
