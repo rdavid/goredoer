@@ -7,7 +7,7 @@
 redo-ifchange ./Containerfile
 
 readonly \
-	BASE_APP_VERSION=0.9.20260628 \
+	BASE_APP_VERSION=0.9.20260705 \
 	BASE_MIN_VERSION=0.9.20240202 \
 	BSH=/usr/local/bin/base.sh
 [ -r "$BSH" ] || {
@@ -17,7 +17,7 @@ readonly \
 set -- "$@" --quiet
 
 . "$BSH"
-validate_cmd podman
+cmd_exists podman || die
 
 # Tracks whether this script started the VM and should stop it on exit.
 # Exit code 125 means the VM is already running or still starting up.
