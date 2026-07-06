@@ -2,12 +2,17 @@
 # vi: lbr noet sw=2 ts=2 tw=79 wrap
 # SPDX-FileCopyrightText: 2024-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
+#
+# Builds the goredoer container image with podman. The variable stp tracks
+# whether this script started the podman VM and should stop it on exit.
+# Exit code 125 from podman machine start means the VM is already running
+# or is still starting up.
 # Variable appears unused and file not following:
 #  shellcheck disable=SC2034,SC1090
 redo-ifchange ./Containerfile
 
 readonly \
-	BASE_APP_VERSION=0.9.20260705 \
+	BASE_APP_VERSION=0.9.20260706 \
 	BASE_MIN_VERSION=0.9.20240202 \
 	BSH=/usr/local/bin/base.sh
 [ -r "$BSH" ] || {
@@ -19,15 +24,11 @@ set -- "$@" --quiet
 . "$BSH"
 cmd_exists podman || die
 
-# Tracks whether this script started the VM and should stop it on exit.
-# Exit code 125 means the VM is already running or still starting up.
-stop_vm=true
+stp=true
 out="$(podman machine start 2>&1)" || {
 	[ $? = 125 ] || die "$out"
 	printf >&2 'Podman VM is already running or is still starting.\n'
-	stop_vm=false
+	stp=false
 }
 out="$(podman build --file ./Containerfile --format docker . 2>&1)" || die "$out"
-if [ "$stop_vm" = true ]; then
-	podman machine stop
-fi
+[ "$stp" = false ] || podman machine stop
