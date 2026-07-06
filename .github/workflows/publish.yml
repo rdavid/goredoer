@@ -38,7 +38,7 @@ jobs:
             maintainer=David Rabkin
             org.opencontainers.image.description=Includes the Goredo utility
             org.opencontainers.image.licenses=0BSD
-            org.opencontainers.image.source=${{ github.repositoryUrl }}
+            org.opencontainers.image.source=https://github.com/rdavid/goredoer
             org.opencontainers.image.title=Goredoer
             org.opencontainers.image.vendor=David Rabkin
           tags: |
