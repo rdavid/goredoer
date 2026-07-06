@@ -1,8 +1,8 @@
 # SPDX-FileCopyrightText: 2025-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
-# Pin the Vale CLI too: the action tag only pins the action, and its version
-# input defaults to "latest", so a new Vale release could change rules and
-# break CI without a commit here.
+# The workflow pins the Vale CLI too: the action tag only pins the action,
+# and its version input defaults to "latest", so a new Vale release could
+# change rules and break CI without a commit here.
 ---
 name: vale
 'on':

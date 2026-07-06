@@ -1,8 +1,8 @@
 # SPDX-FileCopyrightText: 2025-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
-# The .do scripts are POSIX sh (`# shellcheck shell=sh`) but have no shebang,
-# so shfmt defaults to its bash dialect and silently accepts bashisms. Pin
-# `-ln posix` so shfmt parses them as sh and rejects bash-only constructs.
+# Without a shebang, shfmt parses the POSIX .do scripts in its default bash
+# dialect and silently accepts bashisms. The -ln posix flag forces the sh
+# dialect and makes shfmt reject bash-only constructs.
 ---
 name: shfmt
 'on':

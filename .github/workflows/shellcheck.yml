@@ -1,9 +1,9 @@
 # SPDX-FileCopyrightText: 2025-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
-# additional_files takes extension tokens, not globs -- the action turns each
-# into a `find -name '*<token>'` pattern, so `.do` lints every *.do script. A
-# path glob like ./*.do expands to slash-bearing patterns that match nothing,
-# silently skipping every script.
+# The additional_files input takes extension tokens, not globs -- the action
+# turns each into a `find -name '*<token>'` pattern, so `.do` lints every
+# *.do script. A path glob like ./*.do expands to slash-bearing patterns that
+# match nothing, silently skipping every script.
 ---
 name: shellcheck
 'on':
