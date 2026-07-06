@@ -60,8 +60,10 @@ toc::[]
 
 The container image `goredoer` downloads, validates, extracts, and builds
 Sergey Matveev's {url-goredo}[`goredo`] utility.
-{url-goredo}[`goredo`] provides a Go implementation of Daniel J. Bernstein's
-build system {url-redo}[`redo`].
+`goredo` provides a Go implementation of Daniel J. Bernstein's build system
+{url-redo}[`redo`].
+The publish workflow pushes the image to the GitHub Container Registry as
+`ghcr.io/rdavid/goredoer`.
 
 == Build
 
@@ -74,8 +76,10 @@ git clone git@github.com:rdavid/goredoer.git &&
   podman build --file ./Containerfile --format docker .
 ----
 
-== Using
+== Usage
 
+Copy the `goredo` binary from the image and let it create the `redo` command
+symlinks.
 Add the following lines to your `Containerfile`:
 
 [,sh]
@@ -87,11 +91,10 @@ RUN goredo -symlinks
 {url-shellbase}[`shellbase`] uses the `goredoer` image in its
 {url-alpine}[`Containerfile`].
 
-== Test
+== Development
 
-The project uses Daniel J. Bernstein's build system {url-redo}[`redo`].
-Install Sergey Matveev's {url-goredo}[`goredo`] implementation to run the
-project tasks:
+The project uses {url-redo}[`redo`] as its task runner.
+Install {url-goredo}[`goredo`] to run the project tasks:
 
 * `redo build` builds the image from the {url-containerfile}[`Containerfile`].
 * `redo lint` runs the following linters on the source files:
@@ -108,5 +111,5 @@ project tasks:
 
 == License
 
-`goredoer` is copyright {url-cv}[David Rabkin] and available under a
-{url-license}[Zero-Clause BSD license].
+{url-cv}[David Rabkin] holds the copyright and distributes `goredoer` under
+the {url-license}[Zero-Clause BSD license].
