@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2025-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
+#
 # The additional_files input takes extension tokens, not globs -- the action
 # turns each into a `find -name '*<token>'` pattern, so `.do` lints every
 # *.do script. A path glob like ./*.do expands to slash-bearing patterns that
@@ -8,8 +9,12 @@
 name: shellcheck
 'on':
   pull_request:
+    paths: &paths
+      - '*.do'
+      - .github/workflows/shellcheck.yml
   push:
     branches: [master]
+    paths: *paths
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true

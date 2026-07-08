@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2025-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
+#
 # A single Containerfile lives at the repo root, so the job lints it
 # directly. Recursive mode would only build a fragile `**/./Containerfile`
 # glob.
@@ -7,8 +8,12 @@
 name: hadolint
 'on':
   pull_request:
+    paths: &paths
+      - .github/workflows/hadolint.yml
+      - Containerfile
   push:
     branches: [master]
+    paths: *paths
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true

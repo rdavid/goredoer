@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2025-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
+#
 # Without a shebang, shfmt parses the POSIX .do scripts in its default bash
 # dialect and silently accepts bashisms. The -ln posix flag forces the sh
 # dialect and makes shfmt reject bash-only constructs.
@@ -7,8 +8,12 @@
 name: shfmt
 'on':
   pull_request:
+    paths: &paths
+      - '*.do'
+      - .github/workflows/shfmt.yml
   push:
     branches: [master]
+    paths: *paths
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
