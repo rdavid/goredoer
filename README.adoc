@@ -58,16 +58,16 @@ toc::[]
 
 == About
 
-The container image `goredoer` downloads, validates, extracts, and builds
+The `goredoer` container image downloads, verifies, extracts, and builds
 Sergey Matveev's {url-goredo}[`goredo`] utility.
-`goredo` provides a Go implementation of Daniel J. Bernstein's build system
-{url-redo}[`redo`].
+`goredo` implements Daniel J. Bernstein's build system {url-redo}[`redo`]
+in Go.
 The publish workflow pushes the image to the GitHub Container Registry as
 `ghcr.io/rdavid/goredoer`.
 
 == Build
 
-To build the image locally, start the Podman VM first if needed:
+To build the image locally, start the Podman VM if needed and run:
 
 [,sh]
 ----
@@ -80,7 +80,7 @@ git clone git@github.com:rdavid/goredoer.git &&
 
 Copy the `goredo` binary from the image and let it create the `redo` command
 symlinks.
-Add the following lines to your `Containerfile`:
+Add these lines to your `Containerfile`:
 
 [,sh]
 ----
@@ -94,7 +94,7 @@ RUN goredo -symlinks
 == Development
 
 The project uses {url-redo}[`redo`] as its task runner.
-Install {url-goredo}[`goredo`] to run the project tasks:
+Install {url-goredo}[`goredo`] to run the tasks:
 
 * `redo build` builds the image from the {url-containerfile}[`Containerfile`].
 * `redo lint` runs the following linters on the source files:
