@@ -3,7 +3,7 @@
 #
 # Downloads goredo from the FreeBSD ports distfiles mirror because the
 # upstream site www.goredo.stargrave.org does not resolve. The pinned
-# SHA256 confirms the mirror serves the identical upstream tarball.
+# SHA256 confirms the mirror serves the unmodified upstream tarball.
 FROM golang:1.26.4-alpine AS builder
 ENV \
 	SHA=b15cf99b6d11e586223f24712d90d739e6e115abe4b423d26da9412b90339f41 \
@@ -26,7 +26,7 @@ RUN \
 FROM alpine:3.24.1
 LABEL \
 	maintainer=David\ Rabkin\ <david@rabkin.co.il> \
-	org.opencontainers.image.description='Includes the Goredo utility.' \
+	org.opencontainers.image.description='Includes the Goredo utility' \
 	org.opencontainers.image.licenses=0BSD \
 	org.opencontainers.image.source=https://github.com/rdavid/goredoer \
 	org.opencontainers.image.title=Goredoer \

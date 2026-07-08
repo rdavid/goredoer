@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: 0BSD
 #
 # Builds the goredoer container image with Podman. The variable stp tracks
-# whether this script started the Podman VM and should stop it on exit. Exit
+# whether the script started the Podman VM and should stop it on exit. Exit
 # code 125 from podman machine start means the VM is already running or is
 # still starting up. The script prints OK to stdin for the redo target.
 #
