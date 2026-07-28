@@ -1,0 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2026 David Rabkin
+SPDX-License-Identifier: 0BSD
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <polyline points="5,7 11,12 5,17" fill="none" stroke="#2b2b2b" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="13,7 19,12 13,17" fill="none" stroke="#2b2b2b" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="5,7 11,12 5,17" fill="none" stroke="#f0dfaf" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="13,7 19,12 13,17" fill="none" stroke="#f0dfaf" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
