@@ -28,7 +28,7 @@
 :url-vale: https://vale.sh
 :url-yamllint: https://github.com/adrienverge/yamllint
 
-== Goredoer
+= Goredoer
 
 // The width is set to 73 characters, and the height is 11 lines. An ASCII art
 // generator is used with the specific font Colossal:
