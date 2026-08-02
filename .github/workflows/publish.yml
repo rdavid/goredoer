@@ -1,5 +1,11 @@
 # SPDX-FileCopyrightText: 2023-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
+#
+# The Trivy scan runs against the pushed digest rather than a local image:
+# buildx keeps a multi-platform build out of the local Docker store, so
+# there is nothing to load and scan before the push. The ignore-unfixed
+# flag skips base-image CVEs with no available patch, which would
+# otherwise fail every run for issues nobody can act on.
 ---
 name: publish
 'on':
@@ -46,6 +52,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}},priority=901
       - uses: docker/build-push-action@v7.3.0
+        id: build
         with:
           context: .
           file: Containerfile
@@ -62,3 +69,11 @@ jobs:
           push: true
           sbom: true
           tags: ${{ steps.meta.outputs.tags }}
+      - uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          exit-code: '1'
+          ignore-unfixed: true
+          image-ref: "\
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}\
+            @${{ steps.build.outputs.digest }}"
+          severity: CRITICAL,HIGH
