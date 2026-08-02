@@ -14,11 +14,13 @@ concurrency:
   cancel-in-progress: true
 permissions:
   contents: read
-  pull-requests: write
 jobs:
   actionlint:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - uses: actions/checkout@v7.0.1
         with:
