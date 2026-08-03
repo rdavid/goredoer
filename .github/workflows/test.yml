@@ -32,7 +32,7 @@ jobs:
         with:
           persist-credentials: false
       - if: runner.os == 'Linux'
-        uses: redhat-actions/buildah-build@v3.0.1
+        uses: redhat-actions/buildah-build@v3.0.2
         with:
           containerfiles: ./Containerfile
           image: goredoer
