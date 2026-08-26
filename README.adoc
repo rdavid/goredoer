@@ -4,10 +4,10 @@
 
 // URLs:
 :img-hoc: https://hitsofcode.com/github/rdavid/goredoer?branch=master&label=hits%20of%20code
-:img-license: https://img.shields.io/github/license/rdavid/goredoer?color=blue&labelColor=gray&logo=freebsd&logoColor=lightgray&style=flat
-:img-publish: https://github.com/rdavid/goredoer/actions/workflows/publish.yml/badge.svg
-:img-releases: https://img.shields.io/github/v/release/rdavid/goredoer?color=blue&label=%20&logo=semver&logoColor=white&style=flat
-:img-test: https://github.com/rdavid/goredoer/actions/workflows/test.yml/badge.svg
+:img-license: https://img.shields.io/github/license/rdavid/goredoer?color=8cd0d3&labelColor=555555&logo=freebsd&logoColor=dcdccc&style=flat
+:img-publish: https://img.shields.io/github/actions/workflow/status/rdavid/goredoer/publish.yml?branch=master&label=publish&labelColor=555555&logo=github&logoColor=dcdccc&style=flat
+:img-releases: https://img.shields.io/github/v/release/rdavid/goredoer?color=f0dfaf&label=%20&labelColor=555555&logo=semver&logoColor=dcdccc&style=flat
+:img-test: https://img.shields.io/github/actions/workflow/status/rdavid/goredoer/test.yml?branch=master&color=7f9f7f&label=test&labelColor=555555&logo=github&logoColor=dcdccc&style=flat
 :url-actionlint: https://github.com/rhysd/actionlint
 :url-alpine: https://github.com/rdavid/shellbase/blob/master/container/alpine/Containerfile
 :url-containerfile: https://github.com/rdavid/goredoer/blob/master/Containerfile
