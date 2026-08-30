@@ -2,7 +2,9 @@
 # SPDX-License-Identifier: 0BSD
 #
 # The workflow has limitations -- Ubuntu lacks a redo package, and macOS
-# cannot run containers natively.
+# cannot run containers natively. To compensate, the Linux job smoke-tests
+# the built image by running goredo -symlinks, the same invocation the
+# README's Usage section documents.
 ---
 name: test
 'on':
@@ -37,6 +39,11 @@ jobs:
           containerfiles: ./Containerfile
           image: goredoer
           tags: latest
+      - if: runner.os == 'Linux'
+        run: |
+          ctr=$(buildah from goredoer:latest)
+          buildah run "$ctr" /goredo -symlinks
+          buildah rm "$ctr"
       - if: runner.os == 'macOS'
         run: |
           brew install goredo
