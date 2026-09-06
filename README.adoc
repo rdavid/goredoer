@@ -4,8 +4,8 @@
 
 // URLs:
 :img-hoc: https://hitsofcode.com/github/rdavid/goredoer?branch=master&label=hits%20of%20code
-:img-license: https://img.shields.io/github/license/rdavid/goredoer?color=94bff3&labelColor=555555&logo=freebsd&logoColor=dcdccc&style=flat
-:img-publish: https://img.shields.io/github/actions/workflow/status/rdavid/goredoer/publish.yml?color=8cd0d3&label=publish&labelColor=555555&logo=github&logoColor=dcdccc&style=flat
+:img-license: https://img.shields.io/github/license/rdavid/goredoer?color=94bff3&labelColor=555555&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI%2BPHRleHQgeD0iMTIiIHk9IjIwIiBmb250LWZhbWlseT0iSGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNkY2RjY2MiPiYjMTY5OzwvdGV4dD48L3N2Zz4%3D&style=flat
+:img-publish: https://img.shields.io/github/actions/workflow/status/rdavid/goredoer/publish.yml?color=8cd0d3&label=publish&labelColor=555555&logo=docker&logoColor=dcdccc&style=flat
 :img-releases: https://img.shields.io/github/v/release/rdavid/goredoer?color=f0dfaf&label=%20&labelColor=555555&logo=semver&logoColor=dcdccc&style=flat
 :img-test: https://img.shields.io/github/actions/workflow/status/rdavid/goredoer/test.yml?branch=master&color=7f9f7f&label=test&labelColor=555555&logo=github&logoColor=dcdccc&style=flat
 :url-actionlint: https://github.com/rhysd/actionlint
@@ -53,8 +53,8 @@
 <div align="right">
 <a href="{url-test}"><img src="{img-test}" alt="test"></a>
 <a href="{url-publish}"><img src="{img-publish}" alt="publish"></a>
-<a href="{url-hoc}"><img src="{img-hoc}" alt="hits of code"></a>
 <a href="{url-releases}"><img src="{img-releases}" alt="release"></a>
+<a href="{url-hoc}"><img src="{img-hoc}" alt="hits of code"></a>
 <a href="{url-license}"><img src="{img-license}" alt="license"></a>
 </div>
 ++++
