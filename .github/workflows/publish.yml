@@ -5,7 +5,9 @@
 # buildx keeps a multi-platform build out of the local Docker store, so
 # there is nothing to load and scan before the push. The ignore-unfixed
 # flag skips base-image CVEs with no available patch, which would
-# otherwise fail every run for issues nobody can act on.
+# otherwise fail every run for issues nobody can act on. The release step
+# runs last so a failed scan blocks it, and it publishes against the tag
+# that triggered the workflow with an auto-generated changelog body.
 ---
 name: publish
 'on':
@@ -25,7 +27,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     permissions:
-      contents: read
+      contents: write
       packages: write
     steps:
       - uses: actions/checkout@v7.0.1
@@ -79,3 +81,6 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}\
             @${{ steps.build.outputs.digest }}"
           severity: CRITICAL,HIGH
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "$GITHUB_REF_NAME" --generate-notes
