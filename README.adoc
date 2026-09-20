@@ -8,19 +8,19 @@
 :img-publish: https://img.shields.io/github/actions/workflow/status/rdavid/goredoer/publish.yml?color=8cd0d3&label=publish&labelColor=555555&logo=docker&logoColor=dcdccc&style=flat
 :img-releases: https://img.shields.io/github/v/release/rdavid/goredoer?color=f0dfaf&label=%20&labelColor=555555&logo=semver&logoColor=dcdccc&style=flat
 :img-test: https://img.shields.io/github/actions/workflow/status/rdavid/goredoer/test.yml?branch=master&color=7f9f7f&label=test&labelColor=555555&logo=github&logoColor=dcdccc&style=flat
-:url-actionlint: https://github.com/rhysd/actionlint
+:url-actionlint: https://rhysd.github.io/actionlint/
 :url-alpine: https://github.com/rdavid/shellbase/blob/master/container/alpine/Containerfile
 :url-containerfile: https://github.com/rdavid/goredoer/blob/master/Containerfile
 :url-cv: http://cv.rabkin.co.il
 :url-goredo: http://www.goredo.stargrave.org/INSTALL.html
-:url-hadolint: https://github.com/hadolint/hadolint
+:url-hadolint: https://hadolint.github.io/hadolint/
 :url-hoc: https://hitsofcode.com/view/github/rdavid/goredoer?branch=master
 :url-license: https://github.com/rdavid/goredoer/blob/master/LICENSES/0BSD.txt
 :url-publish: https://github.com/rdavid/goredoer/actions/workflows/publish.yml
 :url-redo: http://cr.yp.to/redo.html
 :url-releases: https://github.com/rdavid/goredoer/releases
 :url-reuse: https://github.com/fsfe/reuse-tool
-:url-shellbase: https://github.com/rdavid/shellbase
+:url-shellbase: https://rdavid.github.io/shellbase/
 :url-shellcheck: https://github.com/koalaman/shellcheck
 :url-shfmt: https://github.com/mvdan/sh
 :url-test: https://github.com/rdavid/goredoer/actions/workflows/test.yml
@@ -111,7 +111,8 @@ RUN goredo -symlinks
 == Development
 
 The project uses {url-redo}[`redo`] as its task runner.
-Install {url-goredo}[`goredo`] to run the tasks:
+Install {url-goredo}[`goredo`] and {url-shellbase}[`shellbase`] to run the
+tasks:
 
 * `redo build` builds the image from the {url-containerfile}[`Containerfile`].
 * `redo lint` runs the following linters on the source files:
