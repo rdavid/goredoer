@@ -5,7 +5,10 @@
 # buildx keeps a multi-platform build out of the local Docker store, so
 # there is nothing to load and scan before the push. The ignore-unfixed
 # flag skips base-image CVEs with no available patch, which would
-# otherwise fail every run for issues nobody can act on. The release step
+# otherwise fail every run for issues nobody can act on. The scan runs
+# twice: once to upload a SARIF report to the Security tab regardless of
+# outcome, once to actually fail the workflow on findings, because a step
+# that exits non-zero skips the upload that follows it. The release step
 # runs last so a failed scan blocks it, and it publishes against the tag
 # that triggered the workflow with an auto-generated changelog body.
 ---
@@ -29,6 +32,7 @@ jobs:
     permissions:
       contents: write
       packages: write
+      security-events: write
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -73,6 +77,18 @@ jobs:
           push: true
           sbom: true
           tags: ${{ steps.meta.outputs.tags }}
+      - uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          format: sarif
+          ignore-unfixed: true
+          image-ref: "\
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}\
+            @${{ steps.build.outputs.digest }}"
+          output: trivy-results.sarif
+          severity: CRITICAL,HIGH
+      - uses: github/codeql-action/upload-sarif@v4.38.1
+        with:
+          sarif_file: trivy-results.sarif
       - uses: aquasecurity/trivy-action@v0.36.0
         with:
           exit-code: '1'
