@@ -86,7 +86,7 @@ jobs:
             @${{ steps.build.outputs.digest }}"
           output: trivy-results.sarif
           severity: CRITICAL,HIGH
-      - uses: github/codeql-action/upload-sarif@v4.38.1
+      - uses: github/codeql-action/upload-sarif@v4.38.2
         with:
           sarif_file: trivy-results.sarif
       - uses: aquasecurity/trivy-action@v0.36.0
