@@ -85,6 +85,7 @@ jobs:
           image-ref: "\
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}\
             @${{ steps.build.outputs.digest }}"
+          limit-severities-for-sarif: true
           output: trivy-results.sarif
           severity: CRITICAL,HIGH
       - if: ${{ !cancelled() }}

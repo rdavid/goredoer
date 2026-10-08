@@ -35,6 +35,7 @@ jobs:
           format: sarif
           ignore-unfixed: true
           image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          limit-severities-for-sarif: true
           output: trivy-results.sarif
           severity: CRITICAL,HIGH
       - if: ${{ !cancelled() }}
