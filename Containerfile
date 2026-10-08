@@ -22,8 +22,8 @@ RUN \
 FROM alpine:3.24.2
 RUN \
 	apk add --no-cache --update \
-		libcrypto3=3.5.8-r0 \
-		libssl3=3.5.8-r0
+		libcrypto3=3.5.9-r0 \
+		libssl3=3.5.9-r0
 LABEL \
 	maintainer=David\ Rabkin\ <david@rabkin.co.il> \
 	org.opencontainers.image.description='Includes the Goredo utility' \
