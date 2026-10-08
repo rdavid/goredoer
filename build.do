@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2024-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
 #
-# Builds the goredoer container image with Podman. The variable stp tracks
+# Builds the goredoer container image with Podman. The variable STP tracks
 # whether the script started the Podman VM and should stop it on exit. Exit
 # code 125 from podman machine start means the VM is already running or is
 # still starting up. The script closes the redo jobserver descriptors 3 and 4
@@ -22,12 +22,12 @@ readonly \
 	exit 1
 }
 . "$BSH"
-stp=true
+STP=true
 cmd_run sh -c 'podman machine start 3>&- 4>&-' || {
 	[ $? = 125 ] || die
 	log Podman VM is already running.
-	stp=false
+	STP=false
 }
 cmd_run podman build --file ./Containerfile --format docker .
-[ "$stp" = false ] || podman machine stop
+[ "$STP" = false ] || cmd_run podman machine stop
 printf OK
