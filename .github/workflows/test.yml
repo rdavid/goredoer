@@ -4,7 +4,9 @@
 # The workflow has limitations -- Ubuntu lacks a redo package, and macOS
 # cannot run containers natively. To compensate, the Linux job smoke-tests
 # the built image by running goredo -symlinks, the same invocation the
-# README's Usage section documents.
+# README's Usage section documents. It also builds goredo from the tarball
+# the Containerfile pins, reading the version and checksum from there, so
+# both jobs run the lint target with a working redo.
 ---
 name: test
 'on':
@@ -44,16 +46,37 @@ jobs:
           ctr=$(buildah from goredoer:latest)
           buildah run "$ctr" /goredo -symlinks
           buildah rm "$ctr"
+          ver=$(sed -n 's/^[[:space:]]*VER=\(.*\)/\1/p' Containerfile)
+          sha=$(sed -n 's/^[[:space:]]*SHA=\([0-9a-f]*\).*/\1/p' Containerfile)
+          nme=goredo-$ver.tar.zst
+          cd "$RUNNER_TEMP"
+          curl \
+            --location \
+            --remote-name \
+            --silent \
+            http://www.goredo.stargrave.org/download/"$nme"
+          printf '%s  %s' "$sha" "$nme" | sha256sum --check --status
+          mkdir bin src
+          zstd --decompress < "$nme" |
+            tar \
+              --directory src \
+              --extract \
+              --file - \
+              --strip-components=2 \
+              goredo-"$ver"/src
+          (cd src && go build -mod=vendor -o ../bin/goredo .)
+          (cd bin && ./goredo -symlinks)
+          printf '%s\n' "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
       - if: runner.os == 'macOS'
-        run: |
-          brew install goredo
+        run: brew install goredo
+      - run: |
           rel=0.9.20260707
           src=https://github.com/rdavid/shellbase/archive/refs/tags
           curl \
             --location \
             --silent \
             "$src/v$rel.tar.gz" |
-            tar \
+            sudo tar \
               --directory /usr/local/bin \
               --extract \
               --gzip \
