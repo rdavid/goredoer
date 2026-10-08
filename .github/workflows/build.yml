@@ -1,0 +1,45 @@
+# SPDX-FileCopyrightText: 2026 David Rabkin
+# SPDX-License-Identifier: 0BSD
+#
+# The workflow builds the same platforms as the publish workflow without
+# pushing, so a platform that fails to build shows up on the pull request
+# instead of at release time. The test workflow builds only the native
+# platform.
+---
+name: build
+'on':
+  pull_request:
+    paths: &paths
+      - .github/workflows/build.yml
+      - Containerfile
+  push:
+    branches: [master]
+    paths: *paths
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: docker/setup-qemu-action@v4.4.0
+      - uses: docker/setup-buildx-action@v4.4.1
+      - uses: docker/build-push-action@v7.4.0
+        with:
+          context: .
+          file: Containerfile
+          platforms: "\
+            linux/386,\
+            linux/amd64,\
+            linux/arm/v6,\
+            linux/arm/v7,\
+            linux/arm64,\
+            linux/ppc64le,\
+            linux/s390x"
+          push: false
