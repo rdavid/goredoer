@@ -1,0 +1,44 @@
+# SPDX-FileCopyrightText: 2026 David Rabkin
+# SPDX-License-Identifier: 0BSD
+#
+# The publish workflow scans the image only at release time, so a CVE that
+# lands in Alpine or OpenSSL afterwards would stay unnoticed until the next
+# tag. The workflow scans the published latest image every week with the
+# same Trivy settings. It fails on findings and uploads the SARIF report
+# under its own category, so the Security tab keeps it apart from the
+# release scan. Trivy scans the runner platform only, which is amd64.
+---
+name: scan
+'on':
+  schedule:
+    - cron: '17 5 * * 1'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+env:
+  IMAGE_NAME: ${{ github.repository }}
+  REGISTRY: ghcr.io
+jobs:
+  scan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          exit-code: '1'
+          format: sarif
+          ignore-unfixed: true
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          output: trivy-results.sarif
+          severity: CRITICAL,HIGH
+      - if: ${{ !cancelled() }}
+        uses: github/codeql-action/upload-sarif@v4.38.2
+        with:
+          category: trivy-scheduled
+          sarif_file: trivy-results.sarif
