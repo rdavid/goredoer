@@ -23,6 +23,7 @@ name: build
   push:
     branches: [master]
     paths: *paths
+  workflow_dispatch:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true

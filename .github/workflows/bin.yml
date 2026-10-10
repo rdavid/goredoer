@@ -8,9 +8,10 @@
 # upstream COPYING file, and a checksum file covers all archives. Compiling
 # needs no emulation. The publish workflow calls this one after it creates
 # the release, so the upload finds the release of the tag that triggered
-# the run. A pull request that touches this file builds the archives
-# without uploading them. The workflow reads the goredo version, checksum,
-# and Go version from the Containerfile, so a change there triggers it too.
+# the run. A pull request that touches this file or the Containerfile
+# builds the archives without uploading them, and so does a manual run. The
+# workflow reads the goredo version, checksum, and Go version from the
+# Containerfile.
 ---
 name: bin
 'on':
@@ -19,6 +20,7 @@ name: bin
       - .github/workflows/bin.yml
       - Containerfile
   workflow_call:
+  workflow_dispatch:
 concurrency:
   group: bin-${{ github.ref }}
   cancel-in-progress: true
