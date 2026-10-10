@@ -12,6 +12,7 @@
 # blocks it, and it publishes against the tag that triggered the workflow
 # with an auto-generated changelog body. The build workflow scans a native
 # image earlier, so this scan covers the pushed multi-platform release.
+# The bin workflow attaches goredo binaries to the release afterwards.
 ---
 name: publish
 'on':
@@ -96,3 +97,8 @@ jobs:
       - env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh release create "$GITHUB_REF_NAME" --generate-notes
+  bin:
+    needs: publish
+    permissions:
+      contents: write
+    uses: ./.github/workflows/bin.yml

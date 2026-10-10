@@ -1,0 +1,88 @@
+# SPDX-FileCopyrightText: 2026 David Rabkin
+# SPDX-License-Identifier: 0BSD
+#
+# The workflow cross-compiles goredo from the tarball the Containerfile
+# pins, using the same Go minor version as the builder image. It targets
+# macOS and every Linux platform of the image, and skips Windows because
+# goredo relies on POSIX locking and signals. Each archive carries the
+# upstream COPYING file, and a checksum file covers all archives. Compiling
+# needs no emulation. The publish workflow calls this one after it creates
+# the release, so the upload finds the release of the tag that triggered
+# the run. A pull request that touches this file builds the archives
+# without uploading them. The workflow reads the goredo version, checksum,
+# and Go version from the Containerfile, so a change there triggers it too.
+---
+name: bin
+'on':
+  pull_request:
+    paths:
+      - .github/workflows/bin.yml
+      - Containerfile
+  workflow_call:
+concurrency:
+  group: bin-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  bin:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - id: go
+        run: |
+          ver=$(sed -n 's/^FROM golang:\([0-9.]*\)-alpine.*/\1/p' Containerfile)
+          printf 'ver=%s\n' "$ver" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-go@v7.0.0
+        with:
+          cache: false
+          go-version: ${{ steps.go.outputs.ver }}
+      - run: |
+          ver=$(sed -n 's/^[[:space:]]*VER=\(.*\)/\1/p' Containerfile)
+          sha=$(sed -n 's/^[[:space:]]*SHA=\([0-9a-f]*\).*/\1/p' Containerfile)
+          nme=goredo-$ver.tar.zst
+          dst=$PWD/dst
+          mkdir "$dst" "$RUNNER_TEMP"/src
+          cd "$RUNNER_TEMP"
+          curl \
+            --location \
+            --remote-name \
+            --silent \
+            http://www.goredo.stargrave.org/download/"$nme"
+          printf '%s  %s' "$sha" "$nme" | sha256sum --check --status
+          zstd --decompress < "$nme" |
+            tar --extract --file - --directory src --strip-components=1 \
+              goredo-"$ver"/COPYING goredo-"$ver"/src
+          cp src/COPYING src/src/
+          cd src/src
+          while read -r sys arc arm; do
+            CGO_ENABLED=0 GOARCH=$arc GOARM=$arm GOOS=$sys \
+              go build -mod=vendor -trimpath -o goredo
+            tar \
+              --create \
+              --file "$dst"/goredo-"$ver"-"$sys"-"$arc"${arm:+v$arm}.tar.gz \
+              --gzip \
+              COPYING goredo
+          done <<EOF
+          darwin amd64
+          darwin arm64
+          linux 386
+          linux amd64
+          linux arm 6
+          linux arm 7
+          linux arm64
+          linux ppc64le
+          linux s390x
+          EOF
+          cd "$dst"
+          sha256sum -- *.tar.gz > SHA256SUMS
+      - if: ${{ github.event_name == 'push' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: gh release upload "$TAG" dst/*

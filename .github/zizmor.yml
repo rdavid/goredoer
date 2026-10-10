@@ -1,10 +1,14 @@
 # SPDX-FileCopyrightText: 2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
 # The repository pins actions to release tags, not commit hashes, by
-# convention.
+# convention. The publish workflow calls bin.yml with the standard ./ form,
+# because actionlint rejects the $/ form that zizmor suggests.
 ---
 rules:
   unpinned-uses:
     config:
       policies:
         "*": ref-pin
+  self-repository:
+    ignore:
+      - publish.yml:104
