@@ -107,7 +107,7 @@ Add these lines to your `Containerfile`:
 
 [,sh]
 ----
-COPY --from=ghcr.io/rdavid/goredoer:0.9.20260909 /goredo .
+COPY --from=ghcr.io/rdavid/goredoer:0.9.20261010 /goredo .
 RUN goredo -symlinks
 ----
 
