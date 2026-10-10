@@ -16,6 +16,7 @@
 :url-hadolint: https://hadolint.github.io/hadolint/
 :url-hoc: https://hitsofcode.com/view/github/rdavid/goredoer?branch=master
 :url-license: https://github.com/rdavid/goredoer/blob/master/LICENSES/0BSD.txt
+:url-pages: https://rdavid.github.io/goredoer/
 :url-publish: https://github.com/rdavid/goredoer/actions/workflows/publish.yml
 :url-redo: http://cr.yp.to/redo.html
 :url-releases: https://github.com/rdavid/goredoer/releases
@@ -81,6 +82,9 @@ Sergey Matveev's {url-goredo}[`goredo`] utility.
 in Go.
 The publish workflow pushes the image to the GitHub Container Registry as
 `ghcr.io/rdavid/goredoer`.
+ifndef::pages-build[]
+The image also has a {url-pages}[website].
+endif::[]
 
 == Build
 
