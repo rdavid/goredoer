@@ -10,7 +10,8 @@
 # step runs even after that failure, so the Security tab gets the report
 # regardless of outcome. The release step runs last so a failed scan
 # blocks it, and it publishes against the tag that triggered the workflow
-# with an auto-generated changelog body.
+# with an auto-generated changelog body. The build workflow scans a native
+# image earlier, so this scan covers the pushed multi-platform release.
 ---
 name: publish
 'on':

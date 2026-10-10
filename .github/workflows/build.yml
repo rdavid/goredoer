@@ -6,7 +6,13 @@
 # instead of at release time. The test workflow builds only the native
 # platform. The emulated build takes about 13 minutes, so the timeout leaves
 # headroom for a slow runner. The build uses no layer cache, because a cached
-# apk layer would hide a pinned package that Alpine has dropped.
+# apk layer would hide a pinned package that Alpine has dropped. A second
+# build loads the native image into the local store, because a
+# multi-platform build cannot be loaded, and Trivy scans it with the same
+# settings as the publish workflow. Trivy scans the runner platform only,
+# which is amd64. The scan gates the pull request before any tag exists.
+# The SARIF upload runs on pushes only, because pull requests from forks
+# and Dependabot get a read-only token.
 ---
 name: build
 'on':
@@ -26,6 +32,9 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
+    permissions:
+      contents: read
+      security-events: write
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -45,3 +54,25 @@ jobs:
             linux/ppc64le,\
             linux/s390x"
           push: false
+      - uses: docker/build-push-action@v7.4.0
+        with:
+          context: .
+          file: Containerfile
+          load: true
+          platforms: linux/amd64
+          push: false
+          tags: goredoer:scan
+      - uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          exit-code: '1'
+          format: sarif
+          ignore-unfixed: true
+          image-ref: goredoer:scan
+          limit-severities-for-sarif: true
+          output: trivy-results.sarif
+          severity: CRITICAL,HIGH
+      - if: ${{ !cancelled() && github.event_name == 'push' }}
+        uses: github/codeql-action/upload-sarif@v4.38.2
+        with:
+          category: trivy-build
+          sarif_file: trivy-results.sarif
