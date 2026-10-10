@@ -76,14 +76,16 @@ endif::[]
 
 == About
 
-The `goredoer` container image downloads, verifies, extracts, and builds
-Sergey Matveev's {url-goredo}[`goredo`] utility.
+The `goredoer` container image holds Sergey Matveev's
+{url-goredo}[`goredo`] utility.
+The build downloads the source, checks its checksum, and compiles it.
 `goredo` implements Daniel J. Bernstein's build system {url-redo}[`redo`]
 in Go.
-The publish workflow pushes the image to the GitHub Container Registry as
-`ghcr.io/rdavid/goredoer`.
+Each release publishes the image as `ghcr.io/rdavid/goredoer`.
+It also builds `goredo` binaries for macOS and Linux on several
+architectures and attaches them to the release as assets.
 ifndef::pages-build[]
-The image also has a {url-pages}[website].
+The project also has a {url-pages}[website].
 endif::[]
 
 == Build
@@ -133,8 +135,8 @@ tasks:
 
 == License
 
-{url-cv}[David Rabkin] holds the copyright and distributes `goredoer` under
-the {url-license}[Zero-Clause BSD license].
+{url-cv}[David Rabkin] holds the copyright.
+`goredoer` is available under the {url-license}[Zero-Clause BSD license].
 
 ifdef::pages-build[]
 ++++
