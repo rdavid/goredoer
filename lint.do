@@ -5,9 +5,9 @@
 #
 # Lints the project with any installed linters. Command output streams to
 # the console through the shellbase loggers, and the script prints OK to
-# stdin for the redo target.
+# stdout for the redo target.
 #
-# Variable appears unused and file not following:
+# Silences warnings about unused variables and unfollowed sourced files:
 #  shellcheck disable=SC2034,SC1090
 redo-ifchange \
 	./.github/*.yml \

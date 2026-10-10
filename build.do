@@ -8,9 +8,9 @@
 # code 125 from podman machine start means the VM is already running or is
 # still starting up. The script closes the redo jobserver descriptors 3 and 4
 # for podman machine start, so the VM daemon does not inherit them and stall
-# redo. The script prints OK to stdin for the redo target.
+# redo. The script prints OK to stdout for the redo target.
 #
-# Variable appears unused and file not following:
+# Silences warnings about unused variables and unfollowed sourced files:
 #  shellcheck disable=SC2034,SC1090
 redo-ifchange ./Containerfile
 readonly \
