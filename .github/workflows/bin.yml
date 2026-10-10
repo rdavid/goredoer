@@ -8,10 +8,11 @@
 # upstream COPYING file, and a checksum file covers all archives. Compiling
 # needs no emulation. The publish workflow calls this one after it creates
 # the release, so the upload finds the release of the tag that triggered
-# the run. A pull request that touches this file or the Containerfile
-# builds the archives without uploading them, and so does a manual run. The
-# workflow reads the goredo version, checksum, and Go version from the
-# Containerfile.
+# the run. The build step also runs the linux-amd64 binary and checks the
+# version it reports. A pull request that touches this file or the
+# Containerfile builds the archives without uploading them, and so does a
+# manual run. The workflow reads the goredo version, checksum, and Go
+# version from the Containerfile.
 ---
 name: bin
 'on':
@@ -83,6 +84,13 @@ jobs:
           EOF
           cd "$dst"
           sha256sum -- *.tar.gz > SHA256SUMS
+          mkdir "$RUNNER_TEMP"/smk
+          tar \
+            --directory "$RUNNER_TEMP"/smk \
+            --extract \
+            --file goredo-"$ver"-linux-amd64.tar.gz
+          "$RUNNER_TEMP"/smk/goredo -version |
+            grep --fixed-strings --quiet "goredo $ver "
       - if: ${{ github.event_name == 'push' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
