@@ -74,7 +74,7 @@ jobs:
           output: trivy-results.sarif
           severity: CRITICAL,HIGH
       - if: ${{ !cancelled() && github.event_name == 'push' }}
-        uses: github/codeql-action/upload-sarif@v4.38.2
+        uses: github/codeql-action/upload-sarif@v4.38.3
         with:
           category: trivy-build
           sarif_file: trivy-results.sarif
