@@ -15,6 +15,7 @@
 :url-goredo: http://www.goredo.stargrave.org/INSTALL.html
 :url-hadolint: https://hadolint.github.io/hadolint/
 :url-hoc: https://hitsofcode.com/view/github/rdavid/goredoer?branch=master
+:url-homebrew: https://brew.sh
 :url-license: https://github.com/rdavid/goredoer/blob/master/LICENSES/0BSD.txt
 :url-pages: https://rdavid.github.io/goredoer/
 :url-publish: https://github.com/rdavid/goredoer/actions/workflows/publish.yml
@@ -24,6 +25,7 @@
 :url-shellbase: https://rdavid.github.io/shellbase/
 :url-shellcheck: https://github.com/koalaman/shellcheck
 :url-shfmt: https://github.com/mvdan/sh
+:url-tap: https://rdavid.github.io/homebrew-tap/
 :url-test: https://github.com/rdavid/goredoer/actions/workflows/test.yml
 :url-typos: https://github.com/crate-ci/typos
 :url-vale: https://vale.sh
@@ -117,8 +119,16 @@ RUN goredo -symlinks
 == Development
 
 The project uses {url-redo}[`redo`] as its task runner.
-Install {url-goredo}[`goredo`] and {url-shellbase}[`shellbase`] to run the
-tasks:
+To run the tasks, you need {url-goredo}[`goredo`] and
+{url-shellbase}[`shellbase`].
+Get both from the {url-tap}[tap] with {url-homebrew}[Homebrew]:
+
+[,sh]
+----
+brew install rdavid/tap/goredo rdavid/tap/shellbase
+----
+
+The tasks are:
 
 * `redo build` builds the image from the {url-containerfile}[`Containerfile`].
 * `redo lint` runs the following linters on the source files:
