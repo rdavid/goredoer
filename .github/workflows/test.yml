@@ -83,4 +83,5 @@ jobs:
               --gzip \
               --strip-components=2 \
               shellbase-"$rel"/lib/base.sh
+          sudo chmod +x /usr/local/bin/base.sh
           redo -xx lint

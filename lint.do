@@ -15,14 +15,14 @@ redo-ifchange \
 	./*.do \
 	./Containerfile \
 	./README.adoc
-readonly \
-	BASE_APP_VERSION=0.9.20260709 \
-	BASE_MIN_VERSION=0.9.20260707 \
-	BSH=/usr/local/bin/base.sh
-[ -r "$BSH" ] || {
-	printf >&2 'Install shellbase first (missing %s).\n' "$BSH"
+BSH=$(command -v base.sh) || {
+	printf >&2 'Install shellbase first (base.sh is missing from PATH).\n'
 	exit 1
 }
+readonly \
+	BASE_APP_VERSION=0.9.20261022 \
+	BASE_MIN_VERSION=0.9.20260707 \
+	BSH
 . "$BSH"
 cmd_runif actionlint
 cmd_runif hadolint ./Containerfile
