@@ -68,9 +68,6 @@ jobs:
           (cd src && go build -mod=vendor -o ../bin/goredo .)
           (cd bin && ./goredo -symlinks)
           printf '%s\n' "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
-      - if: runner.os == 'macOS'
-        run: brew install rdavid/tap/goredo
-      - run: |
           rel=0.9.20261010
           src=https://github.com/rdavid/shellbase/archive/refs/tags
           curl \
@@ -84,4 +81,9 @@ jobs:
               --strip-components=2 \
               shellbase-"$rel"/lib/base.sh
           sudo chmod +x /usr/local/bin/base.sh
-          redo -xx lint
+      - if: runner.os == 'macOS'
+        run: |
+          brew install \
+            rdavid/tap/goredo \
+            rdavid/tap/shellbase
+      - run: redo -xx lint
