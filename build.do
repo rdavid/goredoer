@@ -10,18 +10,13 @@
 # for podman machine start, so the VM daemon does not inherit them and stall
 # redo. The script prints OK to stdout for the redo target.
 #
-# Silences warnings about unused variables and unfollowed sourced files:
-#  shellcheck disable=SC2034,SC1090
+# Silences shellcheck warnings about unused variables and sourced files:
+#  shellcheck disable=SC2034,SC1091
 redo-ifchange ./Containerfile
-BSH=$(command -v base.sh) || {
-	printf >&2 'Install shellbase first (base.sh is missing from PATH).\n'
-	exit 1
-}
 readonly \
-	BASE_APP_VERSION=0.9.20261022 \
-	BASE_MIN_VERSION=0.9.20260707 \
-	BSH
-. "$BSH"
+	BASE_APP_VERSION=0.9.20261024 \
+	BASE_MIN_VERSION=0.9.20260707
+. base.sh
 STP=true
 cmd_run sh -c 'podman machine start 3>&- 4>&-' || {
 	[ $? = 125 ] || die
