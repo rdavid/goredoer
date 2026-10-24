@@ -125,7 +125,9 @@ Get both from the {url-tap}[tap] with {url-homebrew}[Homebrew]:
 
 [,sh]
 ----
-brew install rdavid/tap/goredo rdavid/tap/shellbase
+brew install \
+  rdavid/tap/goredo \
+  rdavid/tap/shellbase
 ----
 
 The tasks are:
