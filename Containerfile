@@ -10,7 +10,7 @@ ENV \
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN \
 	apk add --no-cache --update \
-		curl=8.22.0-r0 \
+		curl=8.23.0-r0 \
 		zstd=1.5.7-r2 \
 	&& curl --location --remote-name --silent $URL \
 	&& printf %s\ \ %s $SHA $NME | sha256sum -cs \
@@ -19,7 +19,7 @@ RUN \
 	&& unset GOPATH \
 	&& go build -mod=vendor
 
-FROM alpine:3.24.2
+FROM alpine:3.24.3
 RUN \
 	apk add --no-cache --update \
 		libcrypto3=3.5.9-r0 \
