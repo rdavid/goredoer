@@ -19,6 +19,9 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 permissions:
   contents: read
+defaults:
+  run:
+    shell: sh
 jobs:
   test:
     name: Test on ${{ matrix.os }}
@@ -28,8 +31,8 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - macos-14
           - macos-15
+          - macos-26
           - ubuntu-22.04
           - ubuntu-24.04
     steps:
