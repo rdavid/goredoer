@@ -19,7 +19,7 @@ RUN \
 	&& unset GOPATH \
 	&& go build -mod=vendor
 
-FROM alpine:3.24.3
+FROM alpine:3.24.4
 RUN \
 	apk add --no-cache --update \
 		libcrypto3=3.5.9-r0 \
