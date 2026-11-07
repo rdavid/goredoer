@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: 0BSD
 FROM golang:1.27.3-alpine3.24 AS builder
 ENV \
-	SHA=9229effbd8add272b489af12d96f0037c156cb575137d9cdcd5786f27e1a6364 \
-	VER=2.10.0
+	SHA=53fd8d48ff80a936b697dae515924a59c80fe9709dbad5a952ba79303951359b \
+	VER=2.11.0
 ENV \
 	NME=goredo-$VER.tar.zst \
 	URL=http://www.goredo.stargrave.org/download/goredo-$VER.tar.zst
