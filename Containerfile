@@ -7,7 +7,7 @@ ENV \
 ENV \
 	NME=goredo-$VER.tar.zst \
 	URL=http://www.goredo.stargrave.org/download/goredo-$VER.tar.zst
-SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN \
 	apk add --no-cache --update \
 		curl=8.23.0-r0 \
