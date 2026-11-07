@@ -78,28 +78,29 @@ endif::[]
 
 == About
 
-The `goredoer` container image holds Sergey Matveev's
-{url-goredo}[`goredo`] utility.
-The build downloads the source, checks its checksum, and compiles it.
-`goredo` implements Daniel J. Bernstein's build system {url-redo}[`redo`]
+`goredoer` provides a container image and prebuilt binaries of Sergey
+Matveev's {url-goredo}[`goredo`] utility.
+`goredo` implements Daniel J. Bernstein's {url-redo}[`redo`] build system
 in Go.
+The build downloads the source, checks its checksum, and compiles it.
 Each release publishes the image as `ghcr.io/rdavid/goredoer`.
-It also builds `goredo` binaries for macOS and Linux on several
-architectures and attaches them to the release as assets.
+It also attaches the binaries for several architectures as release assets.
 ifndef::pages-build[]
 The project also has a {url-pages}[website].
 endif::[]
 
-== Build
+== Install
 
-To build the image locally, start the Podman VM if needed and run:
+Get the `goredo` binary from the {url-tap}[tap] with
+{url-homebrew}[Homebrew], which also adds the `redo` symlinks:
 
 [,sh]
 ----
-git clone https://github.com/rdavid/goredoer.git &&
-  cd ./goredoer &&
-  podman build --file ./Containerfile --format docker .
+brew install rdavid/tap/goredo
 ----
+
+You can also get an archive from the {url-releases}[releases] page.
+Check it against `SHA256SUMS`, unpack it, and run `goredo -symlinks`.
 
 == Usage
 
@@ -107,7 +108,7 @@ Copy the `goredo` binary from the image and let it create the `redo` command
 symlinks.
 Add these lines to your `Containerfile`:
 
-[,sh]
+[,dockerfile]
 ----
 COPY --from=ghcr.io/rdavid/goredoer:0.9.20261010 /goredo .
 RUN goredo -symlinks
@@ -117,6 +118,14 @@ RUN goredo -symlinks
 {url-alpine}[`Containerfile`].
 
 == Development
+
+Clone the repository:
+
+[,sh]
+----
+git clone https://github.com/rdavid/goredoer.git &&
+  cd ./goredoer
+----
 
 The project uses {url-redo}[`redo`] as its task runner.
 To run the tasks, you need {url-goredo}[`goredo`] and
@@ -145,10 +154,18 @@ The tasks are:
 * `redo all` runs both `build` and `lint`.
 * `redo clean` removes the build artifacts.
 
+To build the image without `redo`, start the Podman VM if needed and run:
+
+[,sh]
+----
+podman build --file ./Containerfile --format docker .
+----
+
 == License
 
 {url-cv}[David Rabkin] holds the copyright.
 `goredoer` is available under the {url-license}[Zero-Clause BSD license].
+`goredo` itself uses the GNU General Public License, version 3.
 
 ifdef::pages-build[]
 ++++
