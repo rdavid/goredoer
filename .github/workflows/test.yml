@@ -55,8 +55,10 @@ jobs:
           nme=goredo-$ver.tar.zst
           cd "$RUNNER_TEMP"
           curl \
+            --fail \
             --location \
             --remote-name \
+            --show-error \
             --silent \
             http://www.goredo.stargrave.org/download/"$nme"
           printf '%s  %s' "$sha" "$nme" | sha256sum --check --status
@@ -74,7 +76,9 @@ jobs:
           rel=0.9.20261010
           src=https://github.com/rdavid/shellbase/archive/refs/tags
           curl \
+            --fail \
             --location \
+            --show-error \
             --silent \
             "$src/v$rel.tar.gz" |
             sudo tar \

@@ -4,7 +4,10 @@
 name: pages
 'on':
   pull_request:
-    paths: &paths [README.adoc, .github/pages/**]
+    paths: &paths
+      - .github/pages/**
+      - .github/workflows/pages.yml
+      - README.adoc
   push:
     branches: [master]
     paths: *paths
@@ -12,7 +15,7 @@ name: pages
 permissions:
   contents: read
 concurrency:
-  group: pages
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 defaults:
   run:
