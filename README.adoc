@@ -89,7 +89,7 @@ ifndef::pages-build[]
 The project also has a {url-pages}[website].
 endif::[]
 
-== Install
+== Usage
 
 Get the `goredo` binary from the {url-tap}[tap] with
 {url-homebrew}[Homebrew], which also adds the `redo` symlinks:
@@ -102,9 +102,7 @@ brew install rdavid/tap/goredo
 You can also get an archive from the {url-releases}[releases] page.
 Check it against `SHA256SUMS`, unpack it, and run `goredo -symlinks`.
 
-== Usage
-
-Copy the `goredo` binary from the image and let it create the `redo` command
+In a container, copy `goredo` from the image and let it add the `redo`
 symlinks.
 Add these lines to your `Containerfile`:
 
