@@ -13,6 +13,7 @@
 :url-containerfile: https://github.com/rdavid/goredoer/blob/master/Containerfile
 :url-cv: http://cv.rabkin.co.il
 :url-goredo: http://www.goredo.stargrave.org/INSTALL.html
+:url-gpl: https://github.com/rdavid/goredoer/blob/master/LICENSES/GPL-3.0-only.txt
 :url-hadolint: https://hadolint.github.io/hadolint/
 :url-hoc: https://hitsofcode.com/view/github/rdavid/goredoer?branch=master
 :url-homebrew: https://brew.sh
@@ -163,7 +164,7 @@ podman build --file ./Containerfile --format docker .
 
 {url-cv}[David Rabkin] holds the copyright.
 `goredoer` is available under the {url-license}[Zero-Clause BSD license].
-`goredo` itself uses the GNU General Public License, version 3.
+`goredo` itself uses the {url-gpl}[GNU General Public License, version 3].
 
 ifdef::pages-build[]
 ++++
