@@ -6,7 +6,11 @@
 # the built image by running goredo -symlinks, the same invocation the
 # README's Usage section documents. It also builds goredo from the tarball
 # the Containerfile pins, reading the version and checksum from there, so
-# both jobs run the lint target with a working redo.
+# both jobs run the lint target with a working redo. The build sets
+# GOTOOLCHAIN to the Go version of the builder image, so every Ubuntu
+# release compiles with the same toolchain instead of the one the runner
+# ships. The Linux job calls the preinstalled buildah directly, so it fits
+# in a single step.
 ---
 name: test
 'on':
@@ -40,18 +44,14 @@ jobs:
         with:
           persist-credentials: false
       - if: runner.os == 'Linux'
-        uses: redhat-actions/buildah-build@v3.1.0
-        with:
-          containerfiles: ./Containerfile
-          image: goredoer
-          tags: latest
-      - if: runner.os == 'Linux'
         run: |
+          buildah build --file Containerfile --tag goredoer:latest .
           ctr=$(buildah from goredoer:latest)
           buildah run "$ctr" /goredo -symlinks
           buildah rm "$ctr"
           ver=$(sed -n 's/^[[:space:]]*VER=\(.*\)/\1/p' Containerfile)
           sha=$(sed -n 's/^[[:space:]]*SHA=\([0-9a-f]*\).*/\1/p' Containerfile)
+          gov=$(sed -n 's/^FROM golang:\([0-9.]*\)-alpine.*/\1/p' Containerfile)
           nme=goredo-$ver.tar.zst
           cd "$RUNNER_TEMP"
           curl \
@@ -70,8 +70,12 @@ jobs:
               --file - \
               --strip-components=2 \
               goredo-"$ver"/src
-          (cd src && go build -mod=vendor -o ../bin/goredo .)
-          (cd bin && ./goredo -symlinks)
+          (
+            cd src
+            GOTOOLCHAIN=go$gov go build -mod=vendor -o ../bin/goredo
+            cd ../bin
+            ./goredo -symlinks
+          )
           printf '%s\n' "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
           rel=0.9.20261010
           src=https://github.com/rdavid/shellbase/archive/refs/tags

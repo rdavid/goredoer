@@ -8,13 +8,16 @@
 # otherwise fail every run for issues nobody can act on. The scan runs
 # once, writes a SARIF report, and fails the step on findings. The upload
 # step runs even after that failure, so the Security tab gets the report
-# regardless of outcome. The release step runs last so a failed scan
-# blocks it, and it publishes against the tag that triggered the workflow
-# with an auto-generated changelog body. The build workflow scans a native
-# image earlier, so this scan covers the pushed multi-platform release.
-# The first step fails the run when the README example does not name the
-# tag, which catches a release whose README bump was forgotten.
-# The bin workflow attaches goredo binaries to the release afterwards.
+# regardless of outcome. The build workflow scans a native image earlier,
+# so this scan covers the pushed multi-platform release. The first step
+# fails the run when the README example does not name the tag, which
+# catches a release whose README bump was forgotten. The bin workflow
+# builds the goredo archives in parallel and hands them over as an
+# artifact. The release job waits for both, so a failed scan or a failed
+# archive build blocks it. It publishes against the tag that triggered the
+# workflow with an auto-generated changelog body and attaches the archives
+# in the same call, so a release never appears without them. Only that job
+# can write repository contents.
 ---
 name: publish
 'on':
@@ -34,7 +37,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
-      contents: write
+      contents: read
       packages: write
       security-events: write
     steps:
@@ -99,11 +102,22 @@ jobs:
         uses: github/codeql-action/upload-sarif@v4.39.2
         with:
           sarif_file: trivy-results.sarif
-      - env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create "$GITHUB_REF_NAME" --generate-notes
   bin:
-    needs: publish
+    permissions:
+      contents: read
+    uses: ./.github/workflows/bin.yml
+  release:
+    needs: [bin, publish]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     permissions:
       contents: write
-    uses: ./.github/workflows/bin.yml
+    steps:
+      - uses: actions/download-artifact@v8.0.2
+        with:
+          name: bin
+          path: dst
+      - env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "$GITHUB_REF_NAME" --generate-notes dst/*

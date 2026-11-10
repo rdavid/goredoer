@@ -6,13 +6,14 @@
 # macOS and every Linux platform of the image, and skips Windows because
 # goredo relies on POSIX locking and signals. Each archive carries the
 # upstream COPYING file, and a checksum file covers all archives. Compiling
-# needs no emulation. The publish workflow calls this one after it creates
-# the release, so the upload finds the release of the tag that triggered
-# the run. The build step also runs the linux-amd64 binary and checks the
-# version it reports. A pull request or a push to master that touches this
-# file or the Containerfile builds the archives without uploading them, and
-# so does a manual run. The workflow reads the goredo version, checksum, and
-# Go version from the Containerfile.
+# needs no emulation. The build step also runs the linux-amd64 binary and
+# checks the version it reports. Every run uploads the archives as a
+# workflow artifact. The publish workflow calls this one and attaches the
+# artifact to the release it creates, so the job itself needs only read
+# access. A pull request or a push to master that touches this file or the
+# Containerfile builds the archives too, and so does a manual run. The
+# workflow reads the goredo version, checksum, and Go version from the
+# Containerfile.
 ---
 name: bin
 'on':
@@ -35,7 +36,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     permissions:
-      contents: write
+      contents: read
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -96,8 +97,8 @@ jobs:
             --file goredo-"$ver"-linux-amd64.tar.gz
           "$RUNNER_TEMP"/smk/goredo -version |
             grep --fixed-strings --quiet "goredo $ver "
-      - if: ${{ github.event_name == 'push' && github.ref_type == 'tag' }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ github.ref_name }}
-        run: gh release upload "$TAG" dst/*
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          if-no-files-found: error
+          name: bin
+          path: dst/
