@@ -12,4 +12,4 @@ rules:
         "*": ref-pin
   self-repository:
     ignore:
-      - publish.yml:108
+      - publish.yml
