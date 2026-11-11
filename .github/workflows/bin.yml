@@ -28,7 +28,7 @@ name: bin
   workflow_dispatch:
 concurrency:
   group: bin-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 permissions:
   contents: read
 jobs:
