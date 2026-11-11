@@ -109,7 +109,7 @@ Add these lines to your `Containerfile`:
 
 [,dockerfile]
 ----
-COPY --from=ghcr.io/rdavid/goredoer:0.9.20261010 /goredo .
+COPY --from=ghcr.io/rdavid/goredoer:0.9.20261111 /goredo .
 RUN goredo -symlinks
 ----
 
