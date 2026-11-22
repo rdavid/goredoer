@@ -26,7 +26,10 @@ cmd_runif actionlint
 cmd_runif hadolint ./Containerfile
 cmd_runif reuse lint
 cmd_runif shellcheck ./*.do
-cmd_runif shfmt -d -ln posix ./*.do
+cmd_runif shfmt \
+	--diff \
+	--language-dialect posix \
+	./*.do
 cmd_runif typos
 cmd_runif vale sync
 cmd_runif vale ./README.adoc

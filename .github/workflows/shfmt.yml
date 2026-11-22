@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: 0BSD
 #
 # Without a shebang, shfmt parses the POSIX .do scripts in its default bash
-# dialect and silently accepts bashisms. The -ln posix flag forces the sh
-# dialect and makes shfmt reject bash-only constructs.
+# dialect and silently accepts bashisms. The --language-dialect posix flag
+# forces the sh dialect and makes shfmt reject bash-only constructs.
 ---
 name: shfmt
 'on':
@@ -29,4 +29,8 @@ jobs:
         with:
           persist-credentials: false
       - uses: mfinelli/setup-shfmt@v4.0.1
-      - run: shfmt -d -ln posix ./*.do
+      - run: |
+          shfmt \
+            --diff \
+            --language-dialect posix \
+            ./*.do
