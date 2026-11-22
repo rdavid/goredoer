@@ -12,11 +12,11 @@ name: pages
     branches: [master]
     paths: *paths
   workflow_dispatch:
-permissions:
-  contents: read
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+permissions:
+  contents: read
 defaults:
   run:
     shell: sh
@@ -49,14 +49,14 @@ jobs:
   deploy:
     needs: build
     if: github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     permissions:
-      pages: write
       id-token: write
+      pages: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
     steps:
       - id: deployment
         uses: actions/deploy-pages@v5.0.1

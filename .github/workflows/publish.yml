@@ -54,8 +54,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-      - uses: docker/metadata-action@v6.2.0
-        id: meta
+      - id: meta
+        uses: docker/metadata-action@v6.2.0
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           labels: |
@@ -69,8 +69,8 @@ jobs:
             type=raw,value=latest
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}},priority=901
-      - uses: docker/build-push-action@v7.4.0
-        id: build
+      - id: build
+        uses: docker/build-push-action@v7.4.0
         with:
           context: .
           file: Containerfile
