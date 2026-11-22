@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
 #
-# The workflow has limitations -- Ubuntu lacks a redo package, and macOS
+# The workflow has two limitations. Ubuntu lacks a redo package, and macOS
 # cannot run containers natively. To compensate, the Linux job smoke-tests
 # the built image by running goredo -symlinks, the same invocation the
 # README's Usage section documents. It also builds goredo from the tarball

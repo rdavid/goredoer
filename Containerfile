@@ -13,7 +13,7 @@ RUN \
 		curl=8.23.0-r0 \
 		zstd=1.5.7-r2 \
 	&& curl --location --remote-name --silent $URL \
-	&& printf %s\ \ %s $SHA $NME | sha256sum -cs \
+	&& printf '%s  %s' $SHA $NME | sha256sum -cs \
 	&& zstd --decompress < $NME | \
 		tar --extract --file - --strip-components=2 goredo-$VER/src \
 	&& unset GOPATH \
