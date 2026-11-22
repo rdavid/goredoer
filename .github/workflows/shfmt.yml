@@ -29,4 +29,4 @@ jobs:
         with:
           persist-credentials: false
       - uses: mfinelli/setup-shfmt@v4.0.1
-      - run: shfmt -ln posix -d ./*.do
+      - run: shfmt -d -ln posix ./*.do
