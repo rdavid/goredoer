@@ -159,7 +159,10 @@ To build the image without `redo`, start the Podman VM if needed and run:
 
 [,sh]
 ----
-podman build --file ./Containerfile --format docker .
+podman build \
+  --file ./Containerfile \
+  --format docker \
+  .
 ----
 
 == License
