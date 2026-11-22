@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: 2026 David Rabkin
+# SPDX-License-Identifier: 0BSD
+#
+# Configures the lychee link checker. Excludes URLs that shell variables
+# complete at run time, and the bare download and archive prefixes the
+# workflows join with a file name.
+exclude = [
+	'\$',
+	'^http://www\.goredo\.stargrave\.org/download/$',
+	'^https://github\.com/rdavid/shellbase/archive/refs/tags$',
+]

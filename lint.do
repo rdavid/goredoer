@@ -17,13 +17,22 @@ redo-ifchange \
 	./Containerfile \
 	./README.adoc \
 	./REUSE.toml \
-	./_typos.toml
+	./_typos.toml \
+	./lychee.toml
 readonly \
 	BASE_APP_VERSION=0.9.20261122 \
 	BASE_MIN_VERSION=0.9.20260707
 . base.sh
 cmd_runif actionlint
 cmd_runif hadolint ./Containerfile
+cmd_runif lychee \
+	--max-retries 3 \
+	--no-progress \
+	'./*.do' \
+	'./.github/**/*.yml' \
+	'./.github/pages/*.html' \
+	./Containerfile \
+	./README.adoc
 cmd_runif reuse lint
 cmd_runif shellcheck ./*.do
 cmd_runif shfmt \
