@@ -12,9 +12,12 @@
 redo-ifchange \
 	./.github/*.yml \
 	./.github/workflows/*.yml \
+	./.vale.ini \
 	./*.do \
 	./Containerfile \
-	./README.adoc
+	./README.adoc \
+	./REUSE.toml \
+	./_typos.toml
 readonly \
 	BASE_APP_VERSION=0.9.20261122 \
 	BASE_MIN_VERSION=0.9.20260707
@@ -30,4 +33,5 @@ cmd_runif vale ./README.adoc
 cmd_runif yamllint \
 	./.github/*.yml \
 	./.github/workflows/*.yml
+cmd_runif zizmor .
 printf OK

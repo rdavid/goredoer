@@ -31,6 +31,7 @@
 :url-typos: https://github.com/crate-ci/typos
 :url-vale: https://vale.sh
 :url-yamllint: https://github.com/adrienverge/yamllint
+:url-zizmor: https://docs.zizmor.sh
 
 = Goredoer
 
@@ -149,7 +150,8 @@ The tasks are:
   {url-shfmt}[`shfmt`],
   {url-typos}[`typos`],
   {url-vale}[`vale`],
-  {url-yamllint}[`yamllint`].
+  {url-yamllint}[`yamllint`],
+  {url-zizmor}[`zizmor`].
 * `redo all` runs both `build` and `lint`.
 * `redo clean` removes the build artifacts.
 
