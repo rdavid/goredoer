@@ -30,6 +30,9 @@ cmd_runif shfmt \
 	--diff \
 	--language-dialect posix \
 	./*.do
+cmd_runif tombi lint \
+	--error-on-warnings \
+	./*.toml
 cmd_runif typos
 cmd_runif vale sync
 cmd_runif vale ./README.adoc
