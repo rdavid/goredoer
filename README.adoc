@@ -10,8 +10,8 @@
 :img-test: https://img.shields.io/github/actions/workflow/status/rdavid/goredoer/test.yml?branch=master&color=7f9f7f&label=test&labelColor=555555&logo=github&logoColor=dcdccc&style=flat
 :url-actionlint: https://rhysd.github.io/actionlint/
 :url-alpine: https://github.com/rdavid/shellbase/blob/master/container/alpine/Containerfile
+:url-author: https://rdavid.github.io/
 :url-containerfile: https://github.com/rdavid/goredoer/blob/master/Containerfile
-:url-cv: http://cv.rabkin.co.il
 :url-goredo: http://www.goredo.stargrave.org/INSTALL.html
 :url-gpl: https://github.com/rdavid/goredoer/blob/master/LICENSES/GPL-3.0-only.txt
 :url-hadolint: https://hadolint.github.io/hadolint/
@@ -164,7 +164,7 @@ podman build --file ./Containerfile --format docker .
 
 == License
 
-{url-cv}[David Rabkin] holds the copyright.
+{url-author}[David Rabkin] holds the copyright.
 `goredoer` is available under the {url-license}[Zero-Clause BSD license].
 `goredo` itself uses the {url-gpl}[GNU General Public License, version 3].
 
@@ -173,12 +173,12 @@ ifdef::pages-build[]
 <footer id="site-footer">
   <div class="footer-left">
     <img src="favicon.svg" alt="" width="20" height="20">
-    <span>goredoer by <a href="http://cv.rabkin.co.il" target="_blank" rel="noopener">David Rabkin</a></span>
+    <span>goredoer by <a href="https://rdavid.github.io/" target="_blank" rel="noopener">David Rabkin</a></span>
   </div>
   <div class="footer-links">
-    <a href="https://github.com/rdavid/goredoer" target="_blank" rel="noopener">GitHub</a>
     <a href="https://github.com/rdavid/goredoer/releases" target="_blank" rel="noopener">Releases</a>
-    <a href="https://github.com/rdavid/goredoer/blob/master/LICENSES/0BSD.txt" target="_blank" rel="noopener">0BSD License</a>
+    <a href="https://github.com/rdavid/goredoer/pkgs/container/goredoer" target="_blank" rel="noopener">Packages</a>
+    <a href="https://github.com/rdavid/goredoer" target="_blank" rel="noopener">Source</a>
   </div>
 </footer>
 ++++
