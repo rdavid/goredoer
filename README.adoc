@@ -34,8 +34,8 @@
 
 = Goredoer
 
-// The width is set to 79 characters, and the height is 11 lines. An ASCII art
-// generator is used with the specific font Colossal:
+// The ASCII art is 79 characters wide and 11 lines high. The patorjk.com
+// generator draws it in the Colossal font:
 //  http://patorjk.com/software/taag/#p=display&f=Colossal&t=+goredoer
 [,sh]
 ----

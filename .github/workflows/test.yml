@@ -51,9 +51,24 @@ jobs:
           ctr=$(buildah from goredoer:latest)
           buildah run "$ctr" /goredo -symlinks
           buildah rm "$ctr"
-          ver=$(sed -n 's/^[[:space:]]*VER=\(.*\)/\1/p' Containerfile)
-          sha=$(sed -n 's/^[[:space:]]*SHA=\([0-9a-f]*\).*/\1/p' Containerfile)
-          gov=$(sed -n 's/^FROM golang:\([0-9.]*\)-alpine.*/\1/p' Containerfile)
+          ver=$(
+            sed \
+              -n \
+              's/^[[:space:]]*VER=\(.*\)/\1/p' \
+              Containerfile
+          )
+          sha=$(
+            sed \
+              -n \
+              's/^[[:space:]]*SHA=\([0-9a-f]*\).*/\1/p' \
+              Containerfile
+          )
+          gov=$(
+            sed \
+              -n \
+              's/^FROM golang:\([0-9.]*\)-alpine.*/\1/p' \
+              Containerfile
+          )
           nme=goredo-$ver.tar.zst
           cd "$RUNNER_TEMP"
           curl \
