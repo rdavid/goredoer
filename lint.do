@@ -1,4 +1,3 @@
-# shellcheck shell=sh
 # vi: lbr noet sw=2 ts=2 tw=79 wrap
 # SPDX-FileCopyrightText: 2024-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
@@ -7,8 +6,9 @@
 # linter output to the console. The script prints OK to stdout as the redo
 # target.
 #
-# Silences shellcheck warnings about unused variables and sourced files:
-#  shellcheck disable=SC2034,SC1091
+# Sets the shellcheck dialect and silences warnings about unused variables and
+# sourced files:
+#  shellcheck shell=sh disable=SC2034,SC1091
 redo-ifchange \
 	./.github/*.yml \
 	./.github/workflows/*.yml \
@@ -16,7 +16,7 @@ redo-ifchange \
 	./Containerfile \
 	./README.adoc
 readonly \
-	BASE_APP_VERSION=0.9.20261024 \
+	BASE_APP_VERSION=0.9.20261122 \
 	BASE_MIN_VERSION=0.9.20260707
 . base.sh
 cmd_runif actionlint
