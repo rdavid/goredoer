@@ -11,7 +11,7 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN \
 	apk add --no-cache --update \
 		curl=8.23.0-r0 \
-		zstd=1.5.7-r2 \
+		zstd=1.6.0-r1 \
 	&& curl \
 		--fail \
 		--location \

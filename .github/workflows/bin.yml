@@ -50,7 +50,7 @@ jobs:
               Containerfile
           )
           printf 'ver=%s\n' "$ver" >> "$GITHUB_OUTPUT"
-      - uses: actions/setup-go@v7.0.0
+      - uses: actions/setup-go@v7.1.0
         with:
           cache: false
           go-version: ${{ steps.go.outputs.ver }}
