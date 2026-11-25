@@ -1,3 +1,4 @@
+# vi: lbr noet sw=2 ts=2 tw=79 wrap
 # SPDX-FileCopyrightText: 2023-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
 FROM golang:1.27.4-alpine3.24 AS builder
