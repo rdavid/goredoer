@@ -1,11 +1,18 @@
 # SPDX-FileCopyrightText: 2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
 #
-# Configures the lychee link checker. Excludes URLs that shell variables
+# Configures the lychee link checker. Caches results for a day, but never a
+# rate limit or a server error, so a transient failure is checked again on
+# the next run. Waits ten seconds between retries, because a quick retry
+# often hits the same brief outage. Excludes URLs that shell variables
 # complete at run time, and the bare download and archive prefixes the
 # workflows join with a file name.
+cache = true
+cache_exclude_status = "429, 500.."
 exclude = [
 	'\$',
 	'^http://www\.goredo\.stargrave\.org/download/$',
 	'^https://github\.com/rdavid/shellbase/archive/refs/tags$',
 ]
+max_retries = 3
+retry_wait_time = 10

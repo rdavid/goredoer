@@ -5,6 +5,7 @@
 .github/styles/proselint
 .github/styles/Readability
 .github/styles/write-good
+.lycheecache
 .redo*
 1
 build
